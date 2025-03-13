@@ -10,6 +10,7 @@
   Includes
  ======================================================================*/
 #include "capi_alsa_device_i.h"
+#include "spf_interleaver.h"
 
 static capi_err_t capi_alsa_device_common_init(capi_t *_pif, capi_proplist_t *init_set_properties, uint32_t dir);
 
@@ -212,10 +213,9 @@ static capi_err_t capi_alsa_device_process_set_properties(capi_alsa_device_t *me
                return CAPI_EBADPARAM;
             }
 
-            //if channel is 1 interleaving can be ignored
-            if ((CAPI_DEINTERLEAVED_UNPACKED != media_fmt_ptr->format.data_interleaving)&&(1!=media_fmt_ptr->format.num_channels))
+            if (CAPI_DEINTERLEAVED_PACKED == media_fmt_ptr->format.data_interleaving)
             {
-               AR_MSG(DBG_ERROR_PRIO, "CAPI_ALSA_DEVICE: Data format not deinterleaved unpacked ");
+               AR_MSG(DBG_ERROR_PRIO, "CAPI_ALSA_DEVICE: Packed data is not supported.");
                return CAPI_EBADPARAM;
             }
 
@@ -893,6 +893,8 @@ capi_err_t capi_alsa_device_process_sink(capi_t *_pif, capi_stream_data_t *input
    uint32_t total_bytes_copied = 0, total_samples_copied = 0;
    uint16_t num_channels = 0;
    uint16_t bytes_per_channel = 0;
+   uint16_t bytes_per_sample = 0;
+   uint32_t word_size = 0;
    uint16_t num_samples_per_intr = 0;
    uint32_t expected_ip_len_per_ch = 0;
    bool_t need_to_underrun = FALSE;
@@ -901,8 +903,11 @@ capi_err_t capi_alsa_device_process_sink(capi_t *_pif, capi_stream_data_t *input
    num_samples_per_intr = me_ptr->int_samples_per_period;
    num_channels = me_ptr->num_channels;
    bytes_per_channel = me_ptr->bytes_per_channel;
+   bytes_per_sample = me_ptr->bit_width / 8;
+   word_size = bytes_per_sample << 3;
    total_bytes = bytes_per_channel * num_samples_per_intr * num_channels;
    expected_ip_len_per_ch = bytes_per_channel * num_samples_per_intr;
+
    capi_buf_t scratch_buf = {.data_ptr = "NULL", .actual_data_len = 0, .max_data_len = 0};
    scratch_buf.max_data_len = me_ptr->out_data_buffer_size;
    scratch_buf.actual_data_len = 0;
@@ -950,57 +955,81 @@ capi_err_t capi_alsa_device_process_sink(capi_t *_pif, capi_stream_data_t *input
 
    //data flow state
    need_to_reduce_underrun_print = capi_alsa_device_update_dataflow_state(input[port], &me_ptr->df_state, is_input_available);
-   for(i=0; i<num_channels; i++)
+
+   if (!need_to_underrun)
    {
-      if (need_to_underrun)
+      if (CAPI_INTERLEAVED == me_ptr->gen_cntr_alsa_device_media_fmt.format.data_interleaving)
       {
-         bool_t is_eos_set = input[port] ? input[port]->flags.marker_eos : FALSE;
-         capi_cmn_check_print_underrun_multiple_threshold(&(me_ptr->underrun_info),
-                                             me_ptr->iid,
-                                             need_to_reduce_underrun_print,
-                                             is_eos_set,
-                                             me_ptr->is_capi_in_media_fmt_set);
+         //For interleaved data, all data will be in one data buffer, so simply do a memcopy
+         memscpy(scratch_buf.data_ptr,
+                 scratch_buf.max_data_len,
+                 input[port]->buf_ptr[i].data_ptr,
+                 input[port]->buf_ptr[i].actual_data_len);
+         scratch_buf.actual_data_len = input[port]->buf_ptr[i].actual_data_len;
+      }
+      else
+      {
+         if ((AR_EOK != spf_deintlv_to_intlv(input[port]->buf_ptr, &scratch_buf, num_channels, word_size)))
+         {
+            need_to_underrun = TRUE;
+            is_input_available = FALSE;
+            AR_MSG_ISLAND(DBG_ERROR_PRIO, "CAPI: Failed to interleave data");
+         }
+      }
+   }
+   if (need_to_underrun)
+   {
+      bool_t is_eos_set = input[port] ? input[port]->flags.marker_eos : FALSE;
+      capi_cmn_check_print_underrun_multiple_threshold(&(me_ptr->underrun_info),
+                                                       me_ptr->iid,
+                                                       need_to_reduce_underrun_print,
+                                                       is_eos_set,
+                                                       me_ptr->is_capi_in_media_fmt_set);
 
-         me_ptr->need_to_underrun = TRUE;
-
-         if (is_input_available)
+      //If need_to_underrun is true but there is input available, copy the available input and fill the rest of the scratch_buf with zeroes
+      if (is_input_available)
+      {
+         if (CAPI_INTERLEAVED == me_ptr->gen_cntr_alsa_device_media_fmt.format.data_interleaving)
          {
             memscpy(scratch_buf.data_ptr,
-                  scratch_buf.max_data_len,
-                  input[port]->buf_ptr[i].data_ptr,
-                  input[port]->buf_ptr[i].actual_data_len);
-            memset(scratch_buf.data_ptr + input[port]->buf_ptr[i].actual_data_len, 0,
-               scratch_buf.max_data_len - input[port]->buf_ptr[i].actual_data_len);
+                    scratch_buf.max_data_len,
+                    input[port]->buf_ptr[i].data_ptr,
+                    input[port]->buf_ptr[i].actual_data_len);
+            scratch_buf.actual_data_len = input[port]->buf_ptr[i].actual_data_len;
+
+            memset(scratch_buf.data_ptr + scratch_buf.actual_data_len,
+                   0,
+                   scratch_buf.max_data_len - scratch_buf.actual_data_len);
             scratch_buf.actual_data_len = scratch_buf.max_data_len;
          }
          else
          {
-            AR_MSG(DBG_ERROR_PRIO, "Writing zeros to output. Output buffer too small. Output buffer size = %d, Input length = %d",
-               scratch_buf.max_data_len, input[port]->buf_ptr[i].actual_data_len);
-            memset(scratch_buf.data_ptr, 0, scratch_buf.max_data_len);
+            spf_deintlv_to_intlv(input[port]->buf_ptr, &scratch_buf, num_channels, word_size);
+            memset(scratch_buf.data_ptr + scratch_buf.actual_data_len,
+                   0,
+                   scratch_buf.max_data_len - scratch_buf.actual_data_len);
          }
-         me_ptr->need_to_underrun = FALSE;
       }
+      //If no input available, fill the whole buffer with zeroes
       else
       {
-         memscpy(scratch_buf.data_ptr,
-            scratch_buf.max_data_len,
-            input[port]->buf_ptr[i].data_ptr,
-            input[port]->buf_ptr[i].actual_data_len);
+         AR_MSG(DBG_ERROR_PRIO, "Writing zeros to output. Output buffer too small.");
+         memset(scratch_buf.data_ptr, 0, scratch_buf.max_data_len);
+         scratch_buf.actual_data_len = scratch_buf.max_data_len;
       }
+   }
 
-      total_bytes_copied = min(input[port]->buf_ptr[i].actual_data_len, scratch_buf.max_data_len);
-      total_samples_copied = total_bytes_copied/bytes_per_channel;
+   total_bytes_copied = min(scratch_buf.actual_data_len, scratch_buf.max_data_len);
 
-      if (&me_ptr->alsa_device_driver)
+   if (&me_ptr->alsa_device_driver)
+   {
+      ar_result = alsa_device_driver_write(&me_ptr->alsa_device_driver, me_ptr->out_data_buffer, total_bytes_copied);
+      if (ar_result != AR_EOK)
       {
-         ar_result = alsa_device_driver_write(&me_ptr->alsa_device_driver, me_ptr->out_data_buffer, total_bytes_copied);
-         if (ar_result != AR_EOK)
-         {
-            AR_MSG(DBG_ERROR_PRIO, "alsa_device_driver_write failed with error code %d", ar_result);
-            return CAPI_EFAILED;
-         }
+         AR_MSG(DBG_ERROR_PRIO, "alsa_device_driver_write failed with error code %d", ar_result);
+         return CAPI_EFAILED;
       }
+      AR_MSG_ISLAND(DBG_HIGH_PRIO, "CAPI: alsa_device_driver_write successful, total bytes copied: %d", total_bytes_copied);
    }
 
    return capi_result;
