@@ -1,0 +1,41 @@
+{
+    "Executable": "appi_msiir",
+    "TestCases": 
+    [
+	{
+	     "Name":"left_zero_right_hpf",
+	     "ConfigFile":"./cfg/left_zero_right_hpf.cfg",
+	     "InputFile":"../../../../../../../aDSPTest/UnitTestRef/vectors/mozart_48k_stereo.raw",
+	     "OutputFile":"./vectors/mozart_48k_stereo_lzero_rhpf_test.raw",
+	     "Reference":"../../../../../../../aDSPTest/UnitTestRef/filter/msiir/mozart_48k_stereo_lzero_rhpf.raw"
+	},
+        {
+            "Name":"ffa_handset_nb",
+            "ConfigFile":"./cfg/ffa_handset_nb.cfg",
+            "InputFile":"../../../../../../../aDSPTest/UnitTestRef/vectors/harvard_nb.raw",
+            "OutputFile":"./vectors/harvard_ffa_handset_nb_test.raw",
+            "Reference":"../../../../../../../aDSPTest/UnitTestRef/filter/msiir/harvard_ffa_handset_nb.raw"
+        },
+        {
+            "Name":"ffa_handset_wb",
+            "ConfigFile":"./cfg/ffa_handset_wb.cfg",
+            "InputFile":"../../../../../../../aDSPTest/UnitTestRef/vectors/harvard_wb.raw",
+            "OutputFile":"./vectors/harvard_ffa_handset_wb_test.raw",
+            "Reference":"../../../../../../../aDSPTest/UnitTestRef/filter/msiir/harvard_ffa_handset_wb.raw"
+        },
+        {
+            "Name":"LGE_HPF_Left_16bit",
+            "ConfigFile":"./cfg/msiir_mono_LGE_HPF_16bit.cfg",
+            "InputFile":"../../../../../../../aDSPTest/UnitTestRef/vectors/logged_audio_48kHz_L.raw",
+            "OutputFile":"./vectors/logged_audio_48kHz_L_LGE_HPF_test.raw",
+            "Reference":"../../../../../../../aDSPTest/UnitTestRef/filter/msiir/logged_audio_48kHz_L_LGE_HPF_ref.raw"
+        },
+        {
+            "Name":"LGE_HPF_Right_16bit",
+            "ConfigFile":"./cfg/msiir_mono_LGE_HPF_16bit.cfg",
+            "InputFile":"../../../../../../../aDSPTest/UnitTestRef/vectors/logged_audio_48kHz_R.raw",
+            "OutputFile":"./vectors/logged_audio_48kHz_R_LGE_HPF_test.raw",
+            "Reference":"../../../../../../../aDSPTest/UnitTestRef/filter/msiir/logged_audio_48kHz_R_LGE_HPF_ref.raw"
+        }
+    ]
+}
