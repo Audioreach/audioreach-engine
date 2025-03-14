@@ -21,4 +21,18 @@ config ECHO_CANCELLATION
 config GAIN
         tristate "Enable GAIN Library"
         default y
+
+config CH_MIXER
+        tristate "Enable CH_MIXER Library"
+        default y
+
+config MSIIR
+        tristate "Enable MSIIR Library"
+        default y
+
+config PCM_CNV
+        tristate "Enable PCM_CNV Library"
+        depends on CH_MIXER
+        depends on MSIIR
+        default y
 endmenu
