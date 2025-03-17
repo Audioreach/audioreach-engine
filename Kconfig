@@ -5,3 +5,4 @@ source fwk/Kconfig
 source fwk/spf/modules/Kconfig
 source fwk/spf/containers/Kconfig
 source fwk/platform/modules/Kconfig
+source fwk/platform/posal/Kconfig
