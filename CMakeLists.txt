@@ -76,6 +76,7 @@ fwk/api/apm
 fwk/api/ar_utils
 fwk/api/modules
 ${PROJECT_SOURCE_DIR}/ar_osal/api
+modules/processing/channel_mixer/api
 )
 ###
 ###   Some strings used for picking inc paths based on arch, tgt/sim & static/shared.
