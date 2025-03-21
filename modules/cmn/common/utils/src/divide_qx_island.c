@@ -1,31 +1,12 @@
+/*=========================================================================
+Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
+SPDX-License-Identifier: BSD-3-Clause
+========================================================================= */
+
 #include "audio_divide_qx.h"
 #include "audio_basic_op.h"
 #include "audio_basic_op_ext.h"
 
-/*==========================================================================*/
-/* FUNCTION: divide_int32                                                   */
-/*                                                                          */
-/* DESCRIPTION: numerator/denominator (both in the same Q) and outputs      */
-/*              quotient in outputQL16.                                     */
-/*                                                                          */
-/* INPUTS: numeratorL32: numerator in Qin.                                  */
-/*         denominatorL32: denominator in Qin.                              */
-/* OUTPUTS: quotient: quotient of operation in Q31.                         */
-/*                                                                          */
-/* REQUIREMENTS:  numerator!= denominator. And both numerator and           */
-/*                      denominator are positive.                           */
-/* IMPLEMENTATION NOTES:                                                    */
-/*                                                                          */
-/* Since its easier to explain using Q0 output, lets assume that output Q   */
-/* factor is 0.                                                             */
-/*        if(num >= 2^31*den)                                               */
-/*           num = num - den;                                               */
-/*           quotient = quotient<<1+1;                                      */
-/*        else                                                              */
-/*           quotient = quotient<<1;                                        */
-/*      num = num<<1;                                                       */
-/*                                                                          */
-/*==========================================================================*/
 int32_t divide_int32(int32_t numeratorL32, int32_t denominatorL32)
 {
     int32_t quotientL32=0;

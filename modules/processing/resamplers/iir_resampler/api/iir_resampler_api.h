@@ -5,20 +5,11 @@
 @brief iir_resampler_api.h: This file contains the Module Id, Param IDs and configuration
     structures exposed by the IIR Resampler Module. 
 */
-/*=======================================================================
-  Copyright (c) 2018-2024 Qualcomm Technologies, Inc.
-  All Rights Reserved.
-  Confidential and Proprietary - Qualcomm Technologies, Inc.
-=========================================================================*/
-/*========================================================================
-Edit History
+/*=========================================================================
+Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
+SPDX-License-Identifier: BSD-3-Clause
+========================================================================= */
 
-$Header: L:\Projects\avsspf\avs.spf.1.0.14_june_spf\adsp_proc\avs\modules\pp\resampler\iir_resampler\api\iir_resampler_api.h
-
-when       who        what, where, why
---------   ---       --------------------------------------------------
-07/31/18   akr        Created file.
-========================================================================== */
 #ifndef IIR_RESAMPLER_API_H
 #define IIR_RESAMPLER_API_H
 
