@@ -1,0 +1,13 @@
+{
+    "Executable": "appi_msiir",
+    "TestCases": 
+    [
+        {
+            "Name":"msiir_cross_fade_1",
+            "ConfigFile":"./cfg/msiir_cross_fade_stereo_16bit.cfg",
+            "InputFile":"../../../../../../../aDSPTest/UnitTestRef/vectors/48k_stereo_sine.raw",
+            "OutputFile":"./vectors/48k_stereo_sine_test_1.raw",
+            "Reference":"../../../../../../../aDSPTest/UnitTestRef/filter/msiir/48k_stereo_sine_1_ref.raw"
+        }
+    ]
+}
