@@ -76,6 +76,11 @@ fwk/api/apm
 fwk/api/ar_utils
 fwk/api/modules
 ${PROJECT_SOURCE_DIR}/ar_osal/api
+modules/processing/channel_mixer/api
+modules/audio/pcm_decoder/api
+modules/audio/pcm_encoder/api
+modules/cmn/pcm_mf_cnv/capi/mfc/api
+modules/cmn/pcm_mf_cnv/capi/pcm_cnv/api
 )
 ###
 ###   Some strings used for picking inc paths based on arch, tgt/sim & static/shared.

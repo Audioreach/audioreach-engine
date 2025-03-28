@@ -21,4 +21,36 @@ config ECHO_CANCELLATION
 config GAIN
         tristate "Enable GAIN Library"
         default y
+
+config CH_MIXER
+        tristate "Enable CH_MIXER Library"
+        default y
+
+config MSIIR
+        tristate "Enable MSIIR Library"
+        default y
+
+config MFC
+        tristate "Enable MFC Library"
+        select PCM_CNV
+        default y
+
+config PCM_DECODER
+        tristate "Enable PCM_DECODER Library"
+        select PCM_CNV
+        default y
+
+config PCM_ENCODER
+        tristate "Enable PCM_ENCODER Library"
+        select PCM_CNV
+        default y
+
+config PCM_CNV
+        tristate "Enable PCM_CNV Library"
+        select CH_MIXER
+        select MSIIR
+        select MFC
+        select PCM_DECODER
+        select PCM_ENCODER
+        default y
 endmenu
