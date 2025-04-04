@@ -74,9 +74,15 @@ if(USE_SIM)
       ${LIB_ROOT}/src/${TGT_SPECIFIC_FOLDER}/posal_data_log.c
       #${LIB_ROOT}/src/${TGT_SPECIFIC_FOLDER}/posal_data_log_sim.c
    )
-elseif (NOT CONFIG_ARCH_LINUX)
+else()
    list (APPEND lib_srcs_list
       ${LIB_ROOT}/src/${TGT_SPECIFIC_FOLDER}/posal_data_log.c
+   )
+endif()
+
+if (CONFIG_DLS_DATA_LOGGING)
+   set (lib_defs_list
+      DLS_DATA_LOGGING
    )
 endif()
 
