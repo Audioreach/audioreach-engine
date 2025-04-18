@@ -36,6 +36,7 @@ set (lib_srcs_list
      ${LIB_ROOT}/src/util.c
      ${LIB_ROOT}/src/audio_delay32.c
      ${LIB_ROOT}/src/clips.c
+     ${LIB_ROOT}/src/apiir_df1_opt.c
     )
 
 #Call spf_build_static_library to generate the static library

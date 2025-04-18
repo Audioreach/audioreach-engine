@@ -35,4 +35,13 @@ config PCM_CNV
         select CH_MIXER
         select MSIIR
         default y
+
+config DRC
+        tristate "Enable DRC Library"
+        default y
+
+config IIR_MBDRC
+        tristate "Enable IIR_MBDRC Library"
+        select DRC
+        default y
 endmenu
