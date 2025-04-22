@@ -81,6 +81,9 @@ modules/audio/pcm_decoder/api
 modules/audio/pcm_encoder/api
 modules/cmn/pcm_mf_cnv/capi/mfc/api
 modules/cmn/pcm_mf_cnv/capi/pcm_cnv/api
+modules/processing/gain_control/drc/api
+modules/processing/gain_control/iir_mbdrc/api
+modules/cmn/api
 )
 ###
 ###   Some strings used for picking inc paths based on arch, tgt/sim & static/shared.
