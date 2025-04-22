@@ -7,7 +7,7 @@
  *        Defines Supported Sub-System IDs.
  * \copyright
  *  Copyright (c) Qualcomm Innovation Center, Inc. All rights reserved.
- *  SPDX-License-Identifier: BSD-3-Clause
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #ifdef __cplusplus

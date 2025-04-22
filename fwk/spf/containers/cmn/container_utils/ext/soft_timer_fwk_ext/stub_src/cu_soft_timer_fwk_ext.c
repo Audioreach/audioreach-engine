@@ -6,7 +6,7 @@
  *     Implementation of soft_timer stub fwk extension functions.
  * \copyright
  *  Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- *  SPDX-License-Identifier: BSD-3-Clause
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #include "cu_soft_timer_fwk_ext.h"

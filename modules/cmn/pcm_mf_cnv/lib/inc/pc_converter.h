@@ -4,7 +4,7 @@ file pcm_converter.h
 This file contains functions for compression-decompression container
 
    Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
-   SPDX-License-Identifier: BSD-3-Clause
+   SPDX-License-Identifier: BSD-3-Clause-Clear
 ======================================================================*/
 
 /* =======================================================================

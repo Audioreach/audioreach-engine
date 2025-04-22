@@ -1,5 +1,5 @@
 # Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
-# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 
 set(echo_cancellation_sources
 	capi/src/capi_ecns_metadata_utils.c

@@ -4,7 +4,7 @@
 :wq * This file has implementation platform wrapper for the GPR datalink layer
  *
  * Copyright (c) Qualcomm Innovation Center, Inc. All rights reserved.
- * SPDX-License-Identifier: BSD-3-Clause
+ * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #include "gpr_comdef.h"

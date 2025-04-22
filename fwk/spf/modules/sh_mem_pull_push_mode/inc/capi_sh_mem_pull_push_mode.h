@@ -5,7 +5,7 @@
          pull and push mode Module
 
   Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
-  SPDX-License-Identifier: BSD-3-Clause
+  SPDX-License-Identifier: BSD-3-Clause-Clear
 ==============================================================================*/
 
 #ifndef CAPI_SH_MEM_PULL_PUSH_MODE_H

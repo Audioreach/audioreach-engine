@@ -6,7 +6,7 @@
  *     Topo 2 functions for managing dm modes for fractional resampling cases
  * \copyright
  *  Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- *  SPDX-License-Identifier: BSD-3-Clause
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 #include "spl_topo_dm_fwk_ext.h"
 #include "spl_topo_i.h"

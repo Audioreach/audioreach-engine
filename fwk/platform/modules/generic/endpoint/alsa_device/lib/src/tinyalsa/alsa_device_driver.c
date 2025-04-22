@@ -3,7 +3,7 @@
   @brief This file contains tinyalsa based driver implementation of ALSA device.
 
   Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
-  SPDX-License-Identifier: BSD-3-Clause
+  SPDX-License-Identifier: BSD-3-Clause-Clear
 ==============================================================================*/
 
 #include "alsa_device_driver_i.h"

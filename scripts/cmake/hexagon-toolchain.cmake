@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 # VARIABLES:
 #
 # V_ARCH: Hexagon Architecture version number

@@ -7,7 +7,7 @@
  *     Defines public APIs for signal2 used by DSP.
  * \copyright
  *  Copyright (c) Qualcomm Innovation Center, Inc. All rights reserved.
- *  SPDX-License-Identifier: BSD-3-Clause
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 /** @weakgroup weakf_osal_signal2_intro

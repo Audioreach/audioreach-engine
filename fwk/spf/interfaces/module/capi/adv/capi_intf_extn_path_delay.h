@@ -9,7 +9,7 @@
  *    This file defines interface extensions that would help modules getting the path delays
  *
  * Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- * SPDX-License-Identifier: BSD-3-Clause
+ * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #ifdef __cplusplus

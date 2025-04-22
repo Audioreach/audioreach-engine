@@ -4,7 +4,7 @@
 This file contains functions for data format conversions.
 
 Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
-SPDX-License-Identifier: BSD-3-Clause
+SPDX-License-Identifier: BSD-3-Clause-Clear
 ======================================================================*/
 
 /* =======================================================================

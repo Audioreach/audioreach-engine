@@ -4,7 +4,7 @@
  *     Function to exit island if metadata is not supported in island
  * \copyright
  *  Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- *  SPDX-License-Identifier: BSD-3-Clause
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #include "gen_topo.h"

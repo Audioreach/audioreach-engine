@@ -8,7 +8,7 @@
 *     for thread-safe programming.
  * \copyright
  *  Copyright (c) Qualcomm Innovation Center, Inc. All rights reserved.
- *  SPDX-License-Identifier: BSD-3-Clause
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 /** @weakgroup weakf_ar_osal_mutex_intro

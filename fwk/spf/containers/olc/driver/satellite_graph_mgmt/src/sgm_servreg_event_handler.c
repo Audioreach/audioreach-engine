@@ -5,7 +5,7 @@
  *     for the service registry down-notification handler.
  * \copyright
  *  Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- *  SPDX-License-Identifier: BSD-3-Clause
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #include "sgm_i.h"

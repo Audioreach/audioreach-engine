@@ -4,7 +4,7 @@
   @brief This file contains CAPI API's published by alsa device module.
 
   Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
-\  SPDX-License-Identifier: BSD-3-Clause
+\  SPDX-License-Identifier: BSD-3-Clause-Clear
 ==============================================================================*/
 
 #ifndef CAPI_ALSA_DEVICE_H

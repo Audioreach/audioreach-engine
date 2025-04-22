@@ -3,7 +3,7 @@
   Delayline related 16/32 bit processing functions
 
   Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
-  SPDX-License-Identifier: BSD-3-Clause
+  SPDX-License-Identifier: BSD-3-Clause-Clear
 ============================================================================*/
 
 #include "latency_buf_utils.h"

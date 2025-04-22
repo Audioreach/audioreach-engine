@@ -6,7 +6,7 @@
  *
  * \copyright
  *  Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- *  SPDX-License-Identifier: BSD-3-Clause
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #ifndef SPF_DYN_LOADING_FUNC_MAPPING_H

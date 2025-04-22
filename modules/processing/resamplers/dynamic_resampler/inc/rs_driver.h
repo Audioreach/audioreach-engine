@@ -7,7 +7,7 @@ DESCRIPTION:   Resampler HW driver header file.
 
 /*=========================================================================
 Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
-SPDX-License-Identifier: BSD-3-Clause
+SPDX-License-Identifier: BSD-3-Clause-Clear
 ========================================================================= */
 
 #include <stringl/stringl.h>

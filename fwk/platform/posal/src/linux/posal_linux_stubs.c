@@ -7,7 +7,7 @@
  *
  * \copyright
  *      Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- *      SPDX-License-Identifier: BSD-3-Clause
+ *      SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 /* ----------------------------------------------------------------------------
  * Include Files
@@ -37,27 +37,6 @@ ar_result_t posal_island_trigger_island_exit(void)
 }
 
 ar_result_t core_drv_reset(){
-   return AR_EOK;
-}
-
-bool_t posal_data_log_code_status(uint32_t log_code){
-   return false;
-}
-
-ar_result_t posal_data_log_alloc_commit(posal_data_log_info_t *log_info_ptr){
-   ar_result_t result = AR_EOK;
-   return result;
-}
-
-void *posal_data_log_alloc(uint32_t buf_Size, uint32_t log_code, posal_data_log_format_t data_fmt){
-   return NULL;
-}
-
-uint32_t posal_data_log_get_max_buf_size(){
-   return 0;
-}
-
-ar_result_t posal_data_log_commit(void *log_pkt_payload_ptr, posal_data_log_info_t *log_info_ptr){
    return AR_EOK;
 }
 

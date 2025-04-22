@@ -10,7 +10,7 @@
  *    to the framework about their IMCL support, and related capabilities.
  *
  * Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- * SPDX-License-Identifier: BSD-3-Clause
+ * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #ifdef __cplusplus

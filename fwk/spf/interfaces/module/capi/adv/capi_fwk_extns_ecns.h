@@ -9,7 +9,7 @@
  *    This file defines a framework extensions and corresponding private propeties needed for ECNS in voice.
  *
  * Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- * SPDX-License-Identifier: BSD-3-Clause
+ * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #ifdef __cplusplus

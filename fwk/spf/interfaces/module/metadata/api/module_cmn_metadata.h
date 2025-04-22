@@ -15,7 +15,7 @@
  *    modules within a container) and gk metadata (transferred between containers).
  *
  * Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- * SPDX-License-Identifier: BSD-3-Clause
+ * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 

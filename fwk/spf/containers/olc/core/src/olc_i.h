@@ -4,7 +4,7 @@
  *     This file contains internal definitions and declarations for the OLC.
  * \copyright
  *  Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- *  SPDX-License-Identifier: BSD-3-Clause
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #ifndef OLC_I_H

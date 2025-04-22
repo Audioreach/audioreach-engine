@@ -7,7 +7,7 @@
  *        This file contains basic types and pre processor macros.
  * \copyright
  *  Copyright (c) Qualcomm Innovation Center, Inc. All rights reserved.
- *  SPDX-License-Identifier: BSD-3-Clause
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #if defined(__H2XML__)

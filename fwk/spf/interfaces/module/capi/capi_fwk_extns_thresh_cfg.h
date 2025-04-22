@@ -7,7 +7,7 @@
  *        framework extension for modules to receive threshold configuration.
  *
  * Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- * SPDX-License-Identifier: BSD-3-Clause
+ * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #ifdef __cplusplus

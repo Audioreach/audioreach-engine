@@ -6,7 +6,7 @@
  * \brief
  *  This file contains utility functions for FWK_EXTN_SYNC
  *  Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- *  SPDX-License-Identifier: BSD-3-Clause
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 // clang-format on
 

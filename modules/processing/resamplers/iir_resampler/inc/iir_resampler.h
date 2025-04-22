@@ -1,6 +1,6 @@
 /*=========================================================================
 Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
-SPDX-License-Identifier: BSD-3-Clause
+SPDX-License-Identifier: BSD-3-Clause-Clear
 ========================================================================= */
 #ifndef __IIR_RESAMPER_H__
 #define __IIR_RESAMPER_H__

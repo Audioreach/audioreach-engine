@@ -144,4 +144,4 @@ This information is retrieved from the AMDB. AMDB handles both static and dynami
 	- Contains modules aka signal processing algorithms wrapped in CAPI.
 
 ## License
-AudioReach Engine is licensed under the BSD-3-clause. Check out the [LICENSE](LICENSE) for more details
+AudioReach Engine is licensed under the BSD-3-Clause-Clear. Check out the [LICENSE](LICENSE) for more details

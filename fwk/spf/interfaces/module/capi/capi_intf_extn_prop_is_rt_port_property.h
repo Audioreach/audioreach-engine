@@ -6,7 +6,7 @@
  * @brief intf_extns related to propagation of port properties real time (RT) or non real time (NRT).
  *
  * Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- * SPDX-License-Identifier: BSD-3-Clause
+ * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #ifdef __cplusplus

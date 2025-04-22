@@ -7,7 +7,7 @@
  *     Defines public APIs for signal.
  * \copyright
  *  Copyright (c) Qualcomm Innovation Center, Inc. All rights reserved.
- *  SPDX-License-Identifier: BSD-3-Clause
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 /** @weakgroup weakf_osal_signal_intro

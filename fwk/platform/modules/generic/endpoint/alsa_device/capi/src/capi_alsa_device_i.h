@@ -3,7 +3,7 @@
   @brief This file contains CAPI includes of AlSA Device Module
 
   Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
-  SPDX-License-Identifier: BSD-3-Clause
+  SPDX-License-Identifier: BSD-3-Clause-Clear
 ==============================================================================*/
 
 #ifndef _CAPI_ALSA_DEVICE_I_H

@@ -7,7 +7,7 @@
 
 /*=======================================================================
 * Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
-* SPDX-License-Identifier: BSD-3-Clause
+* SPDX-License-Identifier: BSD-3-Clause-Clear
 =========================================================================*/
 /** @h2xml_title1           {Audio Delay/Latency}
     @h2xml_title_agile_rev  {Audio Delay/Latency}

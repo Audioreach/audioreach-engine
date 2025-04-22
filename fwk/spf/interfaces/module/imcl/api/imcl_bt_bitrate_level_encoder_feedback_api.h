@@ -4,7 +4,7 @@
  @brief This file contains API's to send the sideband encoder feedback
 
  Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- SPDX-License-Identifier: BSD-3-Clause
+ SPDX-License-Identifier: BSD-3-Clause-Clear
 
  ====================================================================== */
 

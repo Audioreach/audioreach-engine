@@ -6,7 +6,7 @@
  *     This file contains utility function for exiting island before accessing certain libs which are marked as non-island
  * \copyright
  *  Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- *  SPDX-License-Identifier: BSD-3-Clause
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #include "topo_utils.h"

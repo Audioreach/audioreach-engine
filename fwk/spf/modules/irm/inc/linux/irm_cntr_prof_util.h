@@ -5,7 +5,7 @@
 
 ================================================================================
 Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
-SPDX-License-Identifier: BSD-3-Clause
+SPDX-License-Identifier: BSD-3-Clause-Clear
 ==============================================================================*/
 
 #ifndef _IRM_CNTR_PROF_UTIL_H_

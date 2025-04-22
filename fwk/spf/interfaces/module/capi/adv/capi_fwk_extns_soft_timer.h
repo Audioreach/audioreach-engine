@@ -12,7 +12,7 @@
  *    as the framework process() call and have lower priority
  *
  *  Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- *  SPDX-License-Identifier: BSD-3-Clause
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #include "capi_types.h"

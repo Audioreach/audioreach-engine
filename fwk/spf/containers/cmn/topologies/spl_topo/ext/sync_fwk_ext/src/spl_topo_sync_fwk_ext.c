@@ -6,7 +6,7 @@
  *     Topo 2 functions for managing sync fwk extn that handles active/inactive module ports
  * \copyright
  *  Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- *  SPDX-License-Identifier: BSD-3-Clause
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 #include "spl_topo_sync_fwk_ext.h"
 #include "spl_topo_i.h"

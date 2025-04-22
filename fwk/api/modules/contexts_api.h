@@ -6,7 +6,7 @@
   @brief This file contains Public Context IDs that can be used by clients to configure the ACD module
 
   Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
-  SPDX-License-Identifier: BSD-3-Clause
+  SPDX-License-Identifier: BSD-3-Clause-Clear
 ==============================================================================*/
 
 /** Environment*/

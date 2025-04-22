@@ -4,7 +4,7 @@
  @brief This file contains API's to send the connectivity proxy feedback
 
  Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- SPDX-License-Identifier: BSD-3-Clause
+ SPDX-License-Identifier: BSD-3-Clause-Clear
  ====================================================================== */
 
 #ifndef _IMCL_BT_CONN_PROXY_FEEDBACK_H_

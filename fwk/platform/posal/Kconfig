@@ -1,0 +1,10 @@
+menu "POSAL"
+
+config DLS_DATA_LOGGING
+        bool "Enable Data Logging using Data Logging Service (DLS)."
+        default y
+        help
+           Enable Data Logging using Data Logging Service (DLS). DLS service is used on
+           platform where DIAG is not supported.
+
+endmenu

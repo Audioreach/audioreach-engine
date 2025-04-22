@@ -7,7 +7,7 @@
  *        This file contains multi port buffering modules.
  *
  * Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
- * SPDX-License-Identifier: BSD-3-Clause
+ * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #include "capi_types.h"
