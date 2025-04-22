@@ -32,7 +32,7 @@ extern "C"{
 * Get static properties of Gain module such as
 * memory, stack requirements etc.
 */
-capi_err_t capi_gain_module_get_static_properties(
+capi_err_t capi_example_gain_module_get_static_properties(
       capi_proplist_t *init_set_properties,
       capi_proplist_t *static_properties);
 
@@ -40,7 +40,7 @@ capi_err_t capi_gain_module_get_static_properties(
 /**
 * Instantiates(and allocates) the module memory.
 */
-capi_err_t capi_gain_module_init(
+capi_err_t capi_example_gain_module_init(
       capi_t          *_pif,
       capi_proplist_t *init_set_properties);
 

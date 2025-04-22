@@ -12,7 +12,7 @@
  */
 
 
-#include "gain_module_lib.h"
+#include "example_gain_module_lib.h"
 /*=============================================================================
 FUNCTION      void example_apply_gain_16
 

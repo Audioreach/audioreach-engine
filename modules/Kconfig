@@ -18,8 +18,8 @@ config ECHO_CANCELLATION
         tristate "Enable ECHO Cancellation Library"
         default y
 
-config GAIN
-        tristate "Enable GAIN Library"
+config EXAMPLE_GAIN
+        tristate "Enable EXAMPLE_GAIN Library"
         default y
 
 config CH_MIXER
@@ -43,5 +43,13 @@ config DRC
 config IIR_MBDRC
         tristate "Enable IIR_MBDRC Library"
         select DRC
+        default y
+
+config GAIN
+        tristate "Enable GAIN Library"
+        default y
+
+config SOFT_VOL
+        tristate "Enable SOFT_VOL Library"
         default y
 endmenu

@@ -1,5 +1,5 @@
 /**
- * \file capi_gain_module_utils.c
+ * \file capi_example_gain_module_utils.c
  *  
  * \brief
  *  
@@ -14,17 +14,17 @@
 /*------------------------------------------------------------------------
  * Include files
  * -----------------------------------------------------------------------*/
-#include "capi_gain_module_structs.h"
+#include "capi_example_gain_module_structs.h"
 
 /*------------------------------------------------------------------------
  * Functions
  * -----------------------------------------------------------------------*/
 
 /* =========================================================================
- * FUNCTION : capi_gain_module_module_init_media_fmt_v2
+ * FUNCTION : capi_example_gain_module_module_init_media_fmt_v2
  * DESCRIPTION: Function to initialize the media format of the gain module
  * =========================================================================*/
-capi_err_t capi_gain_module_module_init_media_fmt_v2(capi_gain_module_media_fmt_t *media_fmt_ptr)
+capi_err_t capi_example_gain_module_module_init_media_fmt_v2(capi_example_gain_module_media_fmt_t *media_fmt_ptr)
 {
    media_fmt_ptr->header.format_header.data_format = CAPI_FIXED_POINT;
    media_fmt_ptr->format.minor_version             = CAPI_DATA_FORMAT_INVALID_VAL;
@@ -44,11 +44,11 @@ capi_err_t capi_gain_module_module_init_media_fmt_v2(capi_gain_module_media_fmt_
 }
 
 /* =========================================================================
- * FUNCTION : capi_gain_module_raise_process_event
+ * FUNCTION : capi_example_gain_module_raise_process_event
  * DESCRIPTION: Function to raise the process check event using the
  * callback function to inform the framework if module is enabled or disabled
  * =========================================================================*/
-capi_err_t capi_gain_module_raise_process_event(capi_gain_module_t *me_ptr, uint32_t enable)
+capi_err_t capi_example_gain_module_raise_process_event(capi_example_gain_module_t *me_ptr, uint32_t enable)
 {
    capi_err_t capi_result = CAPI_EOK;
 
@@ -57,7 +57,7 @@ capi_err_t capi_gain_module_raise_process_event(capi_gain_module_t *me_ptr, uint
    {
       if (NULL == me_ptr->cb_info.event_cb)
       {
-         AR_MSG(DBG_ERROR_PRIO, "capi_gain_module : Event callback is not set, Unable to raise process check event!");
+         AR_MSG(DBG_ERROR_PRIO, "capi_example_gain_module : Event callback is not set, Unable to raise process check event!");
          return CAPI_EBADPARAM;
       }
 
@@ -80,23 +80,23 @@ capi_err_t capi_gain_module_raise_process_event(capi_gain_module_t *me_ptr, uint
       if (CAPI_FAILED(capi_result))
       {
          AR_MSG(DBG_ERROR_PRIO,
-                "capi_gain_module : Failed to send process check event with result %d",
+                "capi_example_gain_module : Failed to send process check event with result %d",
                 (int)capi_result);
       }
       else
       {
-         AR_MSG(DBG_HIGH_PRIO, "capi_gain_module : Raising process check event with enable set to %lu", enable);
+         AR_MSG(DBG_HIGH_PRIO, "capi_example_gain_module : Raising process check event with enable set to %lu", enable);
       }
    }
    return capi_result;
 }
 
 /* =========================================================================
- * FUNCTION : capi_gain_module_raise_process_event
+ * FUNCTION : capi_example_gain_module_raise_process_event
  * DESCRIPTION: Function to raise the process check event using the
  * callback function to inform the framework if module is enabled or disabled
  * =========================================================================*/
-static capi_err_t capi_gain_module_raise_kpps_event(capi_gain_module_t *me_ptr, uint32_t kpps)
+static capi_err_t capi_example_gain_module_raise_kpps_event(capi_example_gain_module_t *me_ptr, uint32_t kpps)
 {
    capi_err_t result = CAPI_EOK;
 
@@ -124,18 +124,18 @@ static capi_err_t capi_gain_module_raise_kpps_event(capi_gain_module_t *me_ptr, 
       result = me_ptr->cb_info.event_cb(me_ptr->cb_info.event_context, CAPI_EVENT_KPPS, &event_info);
       if (CAPI_FAILED(result))
       {
-         AR_MSG(DBG_ERROR_PRIO, "capi_gain_module : Failed to send KPPS raise event with %lu", result);
+         AR_MSG(DBG_ERROR_PRIO, "capi_example_gain_module : Failed to send KPPS raise event with %lu", result);
       }
    }
    return result;
 }
 
 /* =========================================================================
- * FUNCTION : capi_gain_module_raise_process_event
+ * FUNCTION : capi_example_gain_module_raise_process_event
  * DESCRIPTION: Function to raise the process check event using the
  * callback function to inform the framework if module is enabled or disabled
  * =========================================================================*/
-static capi_err_t capi_gain_module_raise_bandwidth_event(capi_gain_module_t *me_ptr,
+static capi_err_t capi_example_gain_module_raise_bandwidth_event(capi_example_gain_module_t *me_ptr,
                                                          uint32_t            code_bandwidth,
                                                          uint32_t            data_bandwidth)
 {
@@ -166,18 +166,18 @@ static capi_err_t capi_gain_module_raise_bandwidth_event(capi_gain_module_t *me_
       result = me_ptr->cb_info.event_cb(me_ptr->cb_info.event_context, CAPI_EVENT_BANDWIDTH, &event_info);
       if (CAPI_FAILED(result))
       {
-         AR_MSG(DBG_ERROR_PRIO, "capi_gain_module : Failed to send bandwidth raise event with %lu", result);
+         AR_MSG(DBG_ERROR_PRIO, "capi_example_gain_module : Failed to send bandwidth raise event with %lu", result);
       }
    }
    return result;
 }
 
 /* =========================================================================
- * FUNCTION : capi_gain_module_raise_process_event
+ * FUNCTION : capi_example_gain_module_raise_process_event
  * DESCRIPTION: Function to raise the process check event using the
  * callback function to inform the framework if module is enabled or disabled
  * =========================================================================*/
-static capi_err_t capi_gain_module_raise_algo_delay_event(capi_gain_module_t *me_ptr, uint32_t delay_in_us)
+static capi_err_t capi_example_gain_module_raise_algo_delay_event(capi_example_gain_module_t *me_ptr, uint32_t delay_in_us)
 {
    capi_err_t result = CAPI_EOK;
 
@@ -204,52 +204,52 @@ static capi_err_t capi_gain_module_raise_algo_delay_event(capi_gain_module_t *me
 
       if (CAPI_FAILED(result))
       {
-         AR_MSG(DBG_ERROR_PRIO, "capi_gain_module : Failed to send delay raise event with %lu", result);
+         AR_MSG(DBG_ERROR_PRIO, "capi_example_gain_module : Failed to send delay raise event with %lu", result);
       }
    }
    return result;
 }
 
 /* =========================================================================
- * FUNCTION : capi_gain_module_raise_event
+ * FUNCTION : capi_example_gain_module_raise_event
  * DESCRIPTION: Function to raise kpps, bandwidth and algorithmic delay events
  * for the gain module
  * =========================================================================*/
-capi_err_t capi_gain_module_raise_events(capi_gain_module_t *me_ptr)
+capi_err_t capi_example_gain_module_raise_events(capi_example_gain_module_t *me_ptr)
 {
    capi_err_t capi_result = CAPI_EOK;
    if (NULL == me_ptr->cb_info.event_cb)
    {
-      AR_MSG(DBG_ERROR_PRIO, "capi_gain_module: Event callback is not set. Unable to raise events!");
+      AR_MSG(DBG_ERROR_PRIO, "capi_example_gain_module: Event callback is not set. Unable to raise events!");
       return CAPI_EFAILED;
    }
 
    /* scale KPPS based on num channels and sampling rate */
-   uint32_t kpps = CAPI_GAIN_MODULE_KPPS_8KHZ_MONO_CH * me_ptr->operating_media_fmt.format.num_channels *
+   uint32_t kpps = CAPI_EXAMPLE_GAIN_MODULE_KPPS_8KHZ_MONO_CH * me_ptr->operating_media_fmt.format.num_channels *
                    (me_ptr->operating_media_fmt.format.sampling_rate / 8000);
 
    /* Raise kpps, bw and algo delay events by passing in necessary values*/
-   capi_result |= capi_gain_module_raise_kpps_event(me_ptr, kpps);
+   capi_result |= capi_example_gain_module_raise_kpps_event(me_ptr, kpps);
 
-   capi_result |= capi_gain_module_raise_bandwidth_event(me_ptr, 0 /*code bw*/, 0 /*data bw*/);
+   capi_result |= capi_example_gain_module_raise_bandwidth_event(me_ptr, 0 /*code bw*/, 0 /*data bw*/);
 
-   capi_result |= capi_gain_module_raise_algo_delay_event(me_ptr, 0 /*delay in us*/);
+   capi_result |= capi_example_gain_module_raise_algo_delay_event(me_ptr, 0 /*delay in us*/);
 
    return capi_result;
 }
 
 /* =========================================================================
- * FUNCTION : capi_gain_module_output_media_fmt_event_v2
+ * FUNCTION : capi_example_gain_module_output_media_fmt_event_v2
  * DESCRIPTION: Function to raiseoutput media format event
  * =========================================================================*/
-capi_err_t capi_gain_module_output_media_fmt_event_v2(capi_event_callback_info_t *  cb_info_ptr,
-                                                      capi_gain_module_media_fmt_t *out_media_fmt)
+capi_err_t capi_example_gain_module_output_media_fmt_event_v2(capi_event_callback_info_t *  cb_info_ptr,
+                                                              capi_example_gain_module_media_fmt_t *out_media_fmt)
 {
    capi_err_t result = CAPI_EOK;
    if ((NULL == cb_info_ptr->event_cb) || (NULL == out_media_fmt))
    {
       AR_MSG(DBG_ERROR_PRIO,
-             "capi_gain_module : Event callback is not set or media fmt is NULL, Unable to raise output "
+             "capi_example_gain_module : Event callback is not set or media fmt is NULL, Unable to raise output "
              "media fmt v2 event!");
       return CAPI_EBADPARAM;
    }
@@ -260,7 +260,7 @@ capi_err_t capi_gain_module_output_media_fmt_event_v2(capi_event_callback_info_t
    event_info.port_info.is_input_port = FALSE;
    event_info.payload.actual_data_len = (sizeof(capi_standard_data_format_v2_t) + sizeof(capi_set_get_media_format_t) +
                                          (sizeof(out_media_fmt->channel_type[0]) * out_media_fmt->format.num_channels));
-   event_info.payload.max_data_len = sizeof(capi_gain_module_media_fmt_t);
+   event_info.payload.max_data_len = sizeof(capi_example_gain_module_media_fmt_t);
    event_info.payload.data_ptr     = (int8_t *)out_media_fmt;
 
    result = cb_info_ptr->event_cb(cb_info_ptr->event_context, CAPI_EVENT_OUTPUT_MEDIA_FORMAT_UPDATED_V2, &event_info);
@@ -268,13 +268,13 @@ capi_err_t capi_gain_module_output_media_fmt_event_v2(capi_event_callback_info_t
    if (CAPI_FAILED(result))
    {
       AR_MSG(DBG_ERROR_PRIO,
-             "capi_gain_module: Failed to send output media format updated event V2 with result %d",
+             "capi_example_gain_module: Failed to send output media format updated event V2 with result %d",
              (int)result);
    }
    else
    {
       AR_MSG(DBG_HIGH_PRIO,
-             "capi_gain_module: Raised output media fmt event with Sampling rate = %lu, num channels = %lu, bits per "
+             "capi_example_gain_module: Raised output media fmt event with Sampling rate = %lu, num channels = %lu, bits per "
              "sample =%lu",
              out_media_fmt->format.sampling_rate,
              out_media_fmt->format.num_channels,
@@ -284,16 +284,16 @@ capi_err_t capi_gain_module_output_media_fmt_event_v2(capi_event_callback_info_t
 }
 
 /* =========================================================================
- * FUNCTION : capi_gain_module_process_set_properties
+ * FUNCTION : capi_example_gain_module_process_set_properties
  * DESCRIPTION:  Implementation of set properties
  * =========================================================================*/
-capi_err_t capi_gain_module_process_set_properties(capi_gain_module_t *me_ptr, capi_proplist_t *proplist_ptr)
+capi_err_t capi_example_gain_module_process_set_properties(capi_example_gain_module_t *me_ptr, capi_proplist_t *proplist_ptr)
 {
    capi_err_t capi_result = CAPI_EOK, capi_result2 = CAPI_EOK;
 
    if (NULL == me_ptr)
    {
-      AR_MSG(DBG_ERROR_PRIO, "capi_gain_module : Set property received null ptr");
+      AR_MSG(DBG_ERROR_PRIO, "capi_example_gain_module : Set property received null ptr");
       return CAPI_EBADPARAM;
    }
 
@@ -317,7 +317,7 @@ capi_err_t capi_gain_module_process_set_properties(capi_gain_module_t *me_ptr, c
             else
             {
                AR_MSG(DBG_ERROR_PRIO,
-                      "capi_gain_module: Set property id 0x%lx Bad param size %lu",
+                      "capi_example_gain_module: Set property id 0x%lx Bad param size %lu",
                       (uint32_t)prop_array[i].id,
                       payload_ptr->actual_data_len);
                capi_result |= CAPI_ENEEDMORE;
@@ -334,7 +334,7 @@ capi_err_t capi_gain_module_process_set_properties(capi_gain_module_t *me_ptr, c
             else
             {
                AR_MSG(DBG_ERROR_PRIO,
-                      "capi_gain_module: Set property id 0x%lx Bad param size %lu",
+                      "capi_example_gain_module: Set property id 0x%lx Bad param size %lu",
                       (uint32_t)prop_array[i].id,
                       payload_ptr->actual_data_len);
                capi_result |= CAPI_ENEEDMORE;
@@ -346,21 +346,21 @@ capi_err_t capi_gain_module_process_set_properties(capi_gain_module_t *me_ptr, c
             if (payload_ptr->actual_data_len >= sizeof(capi_port_num_info_t))
             {
                capi_port_num_info_t *data_ptr = (capi_port_num_info_t *)payload_ptr->data_ptr;
-               if ((CAPI_GAIN_MODULE_MAX_IN_PORTS < data_ptr->num_input_ports) ||
-                   (CAPI_GAIN_MODULE_MAX_OUT_PORTS < data_ptr->num_output_ports))
+               if ((CAPI_EXAMPLE_GAIN_MODULE_MAX_IN_PORTS < data_ptr->num_input_ports) ||
+                   (CAPI_EXAMPLE_GAIN_MODULE_MAX_OUT_PORTS < data_ptr->num_output_ports))
                {
                   AR_MSG(DBG_ERROR_PRIO,
-                         "capi_gain_module: Set property id 0x%lx,number of input/output ports cannot be more than "
+                         "capi_example_gain_module: Set property id 0x%lx,number of input/output ports cannot be more than "
                          "%d",
                          (uint32_t)prop_array[i].id,
-                         CAPI_GAIN_MODULE_MAX_OUT_PORTS);
+                         CAPI_EXAMPLE_GAIN_MODULE_MAX_OUT_PORTS);
                   capi_result |= CAPI_ENEEDMORE;
                }
             }
             else
             {
                AR_MSG(DBG_ERROR_PRIO,
-                      "capi_gain_module: Set property id 0x%lx Bad param size %lu",
+                      "capi_example_gain_module: Set property id 0x%lx Bad param size %lu",
                       (uint32_t)prop_array[i].id,
                       payload_ptr->actual_data_len);
                capi_result |= CAPI_ENEEDMORE;
@@ -369,18 +369,18 @@ capi_err_t capi_gain_module_process_set_properties(capi_gain_module_t *me_ptr, c
          }
          case CAPI_INPUT_MEDIA_FORMAT_V2:
          {
-            if (payload_ptr->actual_data_len >= sizeof(capi_gain_module_media_fmt_t))
+            if (payload_ptr->actual_data_len >= sizeof(capi_example_gain_module_media_fmt_t))
             {
-               AR_MSG(DBG_HIGH_PRIO, "capi_gain_module: Received Input media format");
+               AR_MSG(DBG_HIGH_PRIO, "capi_example_gain_module: Received Input media format");
 
-               capi_gain_module_media_fmt_t *media_fmt_ptr = (capi_gain_module_media_fmt_t *)(payload_ptr->data_ptr);
+               capi_example_gain_module_media_fmt_t *media_fmt_ptr = (capi_example_gain_module_media_fmt_t *)(payload_ptr->data_ptr);
 
                /* Number of channels should be between 0 and 32*/
                if ((0 >= media_fmt_ptr->format.num_channels) ||
                    (CAPI_MAX_CHANNELS_V2 < media_fmt_ptr->format.num_channels))
                {
                   AR_MSG(DBG_ERROR_PRIO,
-                         "capi_gain_module: Unsupported number of channels %lu",
+                         "capi_example_gain_module: Unsupported number of channels %lu",
                          media_fmt_ptr->format.num_channels);
                   return CAPI_EBADPARAM;
                }
@@ -396,7 +396,7 @@ capi_err_t capi_gain_module_process_set_properties(capi_gain_module_t *me_ptr, c
                if (payload_ptr->actual_data_len < required_size)
                {
                   AR_MSG(DBG_ERROR_PRIO,
-                         "capi_gain_module: Not valid media format size %lu, required size %lu",
+                         "capi_example_gain_module: Not valid media format size %lu, required size %lu",
                          payload_ptr->actual_data_len,
                          required_size);
                   return CAPI_ENEEDMORE;
@@ -406,7 +406,7 @@ capi_err_t capi_gain_module_process_set_properties(capi_gain_module_t *me_ptr, c
                if (CAPI_FIXED_POINT != media_fmt_ptr->header.format_header.data_format)
                {
                   AR_MSG(DBG_ERROR_PRIO,
-                         "capi_gain_module: unsupported data format %lu",
+                         "capi_example_gain_module: unsupported data format %lu",
                          (uint32_t)media_fmt_ptr->header.format_header.data_format);
                   return CAPI_EBADPARAM;
                }
@@ -415,22 +415,22 @@ capi_err_t capi_gain_module_process_set_properties(capi_gain_module_t *me_ptr, c
                if ((16 != media_fmt_ptr->format.bits_per_sample) && (32 != media_fmt_ptr->format.bits_per_sample))
                {
                   AR_MSG(DBG_ERROR_PRIO,
-                         "capi_gain_module: only supports 16 and 32 bit data. Received %lu.",
+                         "capi_example_gain_module: only supports 16 and 32 bit data. Received %lu.",
                          media_fmt_ptr->format.bits_per_sample);
                   return CAPI_EBADPARAM;
                }
 
                /* Validate interleaving*/
-               if (media_fmt_ptr->format.num_channels != 1 && media_fmt_ptr->format.data_interleaving != CAPI_DEINTERLEAVED_UNPACKED)
+               if (media_fmt_ptr->format.data_interleaving != CAPI_DEINTERLEAVED_UNPACKED)
                {
-                  AR_MSG(DBG_ERROR_PRIO, "capi_gain_module : Interleaved data not supported.");
+                  AR_MSG(DBG_ERROR_PRIO, "capi_example_gain_module : Interleaved data not supported.");
                   return CAPI_EBADPARAM;
                }
 
                /* Validate data signed/unsigned*/
                if (!media_fmt_ptr->format.data_is_signed)
                {
-                  AR_MSG(DBG_ERROR_PRIO, "capi_gain_module: Unsigned data not supported.");
+                  AR_MSG(DBG_ERROR_PRIO, "capi_example_gain_module: Unsigned data not supported.");
                   return CAPI_EBADPARAM;
                }
 
@@ -438,7 +438,7 @@ capi_err_t capi_gain_module_process_set_properties(capi_gain_module_t *me_ptr, c
                if ((0 >= media_fmt_ptr->format.sampling_rate) || (384000 < media_fmt_ptr->format.sampling_rate))
                {
                   AR_MSG(DBG_ERROR_PRIO,
-                         "capi_gain_module: Unsupported sampling rate %lu",
+                         "capi_example_gain_module: Unsupported sampling rate %lu",
                          media_fmt_ptr->format.sampling_rate);
                   return CAPI_EBADPARAM;
                }
@@ -447,14 +447,14 @@ capi_err_t capi_gain_module_process_set_properties(capi_gain_module_t *me_ptr, c
                memscpy(&me_ptr->operating_media_fmt, required_size, media_fmt_ptr, payload_ptr->actual_data_len);
 
                /* raise event for output media format */
-               capi_result |= capi_gain_module_raise_events(me_ptr);
+               capi_result |= capi_example_gain_module_raise_events(me_ptr);
                capi_result |=
-                  capi_gain_module_output_media_fmt_event_v2(&me_ptr->cb_info, &me_ptr->operating_media_fmt);
+                  capi_example_gain_module_output_media_fmt_event_v2(&me_ptr->cb_info, &me_ptr->operating_media_fmt);
             }
             else
             {
                AR_MSG(DBG_ERROR_PRIO,
-                      "capi_gain_module: Set property id 0x%lx Bad param size %lu",
+                      "capi_example_gain_module: Set property id 0x%lx Bad param size %lu",
                       (uint32_t)prop_array[i].id,
                       payload_ptr->actual_data_len);
                capi_result |= CAPI_ENEEDMORE;
@@ -470,7 +470,7 @@ capi_err_t capi_gain_module_process_set_properties(capi_gain_module_t *me_ptr, c
          }
          default:
          {
-            AR_MSG(DBG_HIGH_PRIO, "capi_gain_module: Set property id %x. Not supported.", prop_array[i].id);
+            AR_MSG(DBG_HIGH_PRIO, "capi_example_gain_module: Set property id %x. Not supported.", prop_array[i].id);
             break;
          }
       }
@@ -485,10 +485,10 @@ capi_err_t capi_gain_module_process_set_properties(capi_gain_module_t *me_ptr, c
 }
 
 /* =========================================================================
- * FUNCTION : capi_gain_module_process_get_properties
+ * FUNCTION : capi_example_gain_module_process_get_properties
  * DESCRIPTION:  Combined implementation of get static properties and get properties
  * =========================================================================*/
-capi_err_t capi_gain_module_process_get_properties(capi_gain_module_t *me_ptr, capi_proplist_t *proplist_ptr)
+capi_err_t capi_example_gain_module_process_get_properties(capi_example_gain_module_t *me_ptr, capi_proplist_t *proplist_ptr)
 {
    capi_err_t   capi_result  = CAPI_EOK;
    capi_err_t   capi_result2 = CAPI_EOK;
@@ -499,7 +499,7 @@ capi_err_t capi_gain_module_process_get_properties(capi_gain_module_t *me_ptr, c
       capi_buf_t *payload_ptr = &prop_array[i].payload;
       if (NULL == payload_ptr->data_ptr)
       {
-         AR_MSG(DBG_ERROR_PRIO, "capi_gain_module: Get property id 0x%x, received null buffer", prop_array[i].id);
+         AR_MSG(DBG_ERROR_PRIO, "capi_example_gain_module: Get property id 0x%x, received null buffer", prop_array[i].id);
          capi_result |= CAPI_EBADPARAM;
          break;
       }
@@ -511,13 +511,13 @@ capi_err_t capi_gain_module_process_get_properties(capi_gain_module_t *me_ptr, c
             if (payload_ptr->max_data_len >= sizeof(capi_init_memory_requirement_t))
             {
                capi_init_memory_requirement_t *data_ptr = (capi_init_memory_requirement_t *)(payload_ptr->data_ptr);
-               data_ptr->size_in_bytes                  = gain_align_to_8_byte(sizeof(capi_gain_module_t));
+               data_ptr->size_in_bytes                  = gain_align_to_8_byte(sizeof(capi_example_gain_module_t));
                payload_ptr->actual_data_len             = sizeof(capi_init_memory_requirement_t);
             }
             else
             {
                AR_MSG(DBG_ERROR_PRIO,
-                      "capi_gain_module: Get property id 0x%lx Bad param size %lu",
+                      "capi_example_gain_module: Get property id 0x%lx Bad param size %lu",
                       (uint32_t)prop_array[i].id,
                       payload_ptr->actual_data_len);
                capi_result |= CAPI_ENEEDMORE;
@@ -536,7 +536,7 @@ capi_err_t capi_gain_module_process_get_properties(capi_gain_module_t *me_ptr, c
             else
             {
                AR_MSG(DBG_ERROR_PRIO,
-                      "capi_gain_module: Get property id 0x%lx Bad param size %lu",
+                      "capi_example_gain_module: Get property id 0x%lx Bad param size %lu",
                       (uint32_t)prop_array[i].id,
                       payload_ptr->actual_data_len);
                capi_result |= CAPI_ENEEDMORE;
@@ -554,7 +554,7 @@ capi_err_t capi_gain_module_process_get_properties(capi_gain_module_t *me_ptr, c
             else
             {
                AR_MSG(DBG_ERROR_PRIO,
-                      "capi_gain_module: Get  property id 0x%lx Bad param size %lu",
+                      "capi_example_gain_module: Get  property id 0x%lx Bad param size %lu",
                       (uint32_t)prop_array[i].id,
                       payload_ptr->max_data_len);
                capi_result |= CAPI_ENEEDMORE;
@@ -572,7 +572,7 @@ capi_err_t capi_gain_module_process_get_properties(capi_gain_module_t *me_ptr, c
             else
             {
                AR_MSG(DBG_ERROR_PRIO,
-                      "capi_gain_module: Get  property id 0x%lx Bad param size %lu",
+                      "capi_example_gain_module: Get  property id 0x%lx Bad param size %lu",
                       (uint32_t)prop_array[i].id,
                       payload_ptr->max_data_len);
                capi_result |= CAPI_ENEEDMORE;
@@ -602,7 +602,7 @@ capi_err_t capi_gain_module_process_get_properties(capi_gain_module_t *me_ptr, c
          {
             if (NULL == me_ptr)
             {
-               AR_MSG(DBG_ERROR_PRIO, "capi_gain_module : null ptr while querying output mf");
+               AR_MSG(DBG_ERROR_PRIO, "capi_example_gain_module : null ptr while querying output mf");
                capi_result |= CAPI_EBADPARAM;
                break;
             }
@@ -610,15 +610,15 @@ capi_err_t capi_gain_module_process_get_properties(capi_gain_module_t *me_ptr, c
             /* The size of the payload is the sum of the size of the media format struct and the channel map size
              * which depends on the number of channels. Every channel will have a uint16_t channel type field*/
             uint32_t total_size =
-               sizeof(capi_gain_module_media_fmt_t) + (sizeof(me_ptr->operating_media_fmt.format.channel_type[0]) *
+               sizeof(capi_example_gain_module_media_fmt_t) + (sizeof(me_ptr->operating_media_fmt.format.channel_type[0]) *
                                                        me_ptr->operating_media_fmt.format.num_channels);
 
             if (payload_ptr->max_data_len >= total_size)
             {
-               capi_gain_module_media_fmt_t *data_ptr = (capi_gain_module_media_fmt_t *)payload_ptr->data_ptr;
+               capi_example_gain_module_media_fmt_t *data_ptr = (capi_example_gain_module_media_fmt_t *)payload_ptr->data_ptr;
                if ((FALSE == prop_array[i].port_info.is_valid) && (TRUE == prop_array[i].port_info.is_input_port))
                {
-                  AR_MSG(DBG_ERROR_PRIO, "capi_gain_module : Get output media fmt v2 port id not valid or input port");
+                  AR_MSG(DBG_ERROR_PRIO, "capi_example_gain_module : Get output media fmt v2 port id not valid or input port");
                   capi_result |= CAPI_EBADPARAM;
                }
                memscpy(data_ptr, total_size, &me_ptr->operating_media_fmt, total_size);
@@ -627,7 +627,7 @@ capi_err_t capi_gain_module_process_get_properties(capi_gain_module_t *me_ptr, c
             else
             {
                AR_MSG(DBG_ERROR_PRIO,
-                      "capi_gain_module: Get property_id 0x%lx, Bad param size %lu",
+                      "capi_example_gain_module: Get property_id 0x%lx, Bad param size %lu",
                       (uint32_t)prop_array[i].id,
                       payload_ptr->max_data_len);
                payload_ptr->actual_data_len = 0;
@@ -639,7 +639,7 @@ capi_err_t capi_gain_module_process_get_properties(capi_gain_module_t *me_ptr, c
          {
             if (NULL == me_ptr)
             {
-               AR_MSG(DBG_ERROR_PRIO, "capi_gain_module : null ptr while querying threshold");
+               AR_MSG(DBG_ERROR_PRIO, "capi_example_gain_module : null ptr while querying threshold");
                return CAPI_EBADPARAM;
             }
             if (payload_ptr->max_data_len >= sizeof(capi_port_data_threshold_t))
@@ -647,13 +647,13 @@ capi_err_t capi_gain_module_process_get_properties(capi_gain_module_t *me_ptr, c
                capi_port_data_threshold_t *data_ptr = (capi_port_data_threshold_t *)payload_ptr;
                if (!prop_array[i].port_info.is_valid)
                {
-                  AR_MSG(DBG_ERROR_PRIO, "capi_gain_module : Get port threshold port id not valid");
+                  AR_MSG(DBG_ERROR_PRIO, "capi_example_gain_module : Get port threshold port id not valid");
                   capi_result |= CAPI_EBADPARAM;
                }
                if (0 != prop_array[i].port_info.port_index)
                {
                   AR_MSG(DBG_ERROR_PRIO,
-                         "capi_gain_module: Get property_id 0x%lx, max in/out port is 1. asking for %lu",
+                         "capi_example_gain_module: Get property_id 0x%lx, max in/out port is 1. asking for %lu",
                          (uint32_t)prop_array[i].id,
                          prop_array[i].port_info.port_index);
                   capi_result |= CAPI_EBADPARAM;
@@ -666,7 +666,7 @@ capi_err_t capi_gain_module_process_get_properties(capi_gain_module_t *me_ptr, c
             else
             {
                AR_MSG(DBG_ERROR_PRIO,
-                      "capi_gain_module: Get property_id 0x%lx, Bad param size %lu",
+                      "capi_example_gain_module: Get property_id 0x%lx, Bad param size %lu",
                       (uint32_t)prop_array[i].id,
                       payload_ptr->max_data_len);
                payload_ptr->actual_data_len = 0;
@@ -683,7 +683,7 @@ capi_err_t capi_gain_module_process_get_properties(capi_gain_module_t *me_ptr, c
          }
          default:
          {
-            AR_MSG(DBG_HIGH_PRIO, "capi_gain_module: Get property for ID %#x. Not supported.", prop_array[i].id);
+            AR_MSG(DBG_HIGH_PRIO, "capi_example_gain_module: Get property for ID %#x. Not supported.", prop_array[i].id);
             capi_result |= CAPI_EUNSUPPORTED;
             break;
          }

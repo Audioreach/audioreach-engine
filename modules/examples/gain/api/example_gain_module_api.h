@@ -3,12 +3,12 @@
 
 /**
  * \file gain_module_api.h
- *
+ *  
  * \brief
- *
+ *  
  *     Example Gain Module
- *
- *
+ *  
+ * 
  * \copyright
  *  Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
  *  SPDX-License-Identifier: BSD-3-Clause-Clear
@@ -38,9 +38,9 @@
 ==============================================================================*/
 
 /** Module ID for Gain module  */
-#define MODULE_ID_GAIN_MODULE 0x0700106F
-/** @h2xmlm_module       {"MODULE_ID_GAIN_MODULE",
-                           MODULE_ID_GAIN_MODULE}
+#define MODULE_ID_EXAMPLE_GAIN_MODULE 0x0700106F
+/** @h2xmlm_module       {"MODULE_ID_EXAMPLE_GAIN_MODULE",
+                           MODULE_ID_EXAMPLE_GAIN_MODULE}
     @h2xmlm_displayName {"Example - Gain"}
     @h2xmlm_description  {Gain Module \n
                           - Supports following params:
@@ -71,8 +71,8 @@
 /* ID of the parameter used to set the gain */
 #define PARAM_ID_GAIN_MODULE_GAIN 0x08001175
 
-/** @h2xmlp_parameter   {"PARAM_ID_GAIN_MODULE_GAIN",
-                         PARAM_ID_GAIN_MODULE_GAIN}
+/** @h2xmlp_parameter   {"PARAM_ID_GAIN_MODULE",
+                         PARAM_ID_GAIN_MODULE}
     @h2xmlp_description {Configures the gain}
     @h2xmlp_toolPolicy  {Calibration; RTC} */
 
