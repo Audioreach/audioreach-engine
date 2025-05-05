@@ -61,8 +61,8 @@ typedef struct
 
 /** posal timer structure. */
 typedef struct {
-  uint32_t          timer_obj;
-  /**< Timer object. */
+  timer_t*         timer_obj;
+  /**< Pointer to timer object. */
 
   uint64_t          timer_start_time;
 
