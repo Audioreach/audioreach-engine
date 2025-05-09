@@ -18,6 +18,7 @@ INCLUDE FILES FOR MODULE
 #include "posal_internal.h"
 #include "posal_target_i.h"
 #include <ar_osal_timer.h>
+#include <time.h>
 
 /*--------------------------------------------------------------*/
 /* Macro / Global definitions                                            */
@@ -61,7 +62,7 @@ static void posal_timer_expire_cb(union sigval sv)
 {
    posal_timer_info_t *p_timer = (posal_timer_info_t *)sv.sival_ptr;
    posal_channel_internal_t *p_channel = (posal_channel_internal_t *)p_timer->pChannel;
-   posal_signal_set_target_inline(&p_channel->anysig, p_channel->unBitsUsedMask);
+   posal_signal_set_target_inline(&p_channel->anysig, p_timer->timer_sigmask);
 #ifdef DEBUG_POSAL_TIMER
       prev_trigger_count = trigger_counter;
       trigger_counter++;
@@ -123,6 +124,78 @@ int32_t posal_timer_create_v2(posal_timer_t *                        pp_timer,
                               POSAL_HEAP_ID                          heap_id)
 {
    int nStatus = 0;
+   struct sigevent timer_event = {0};
+
+   if ((NULL == pp_timer) || (NULL == client_info_ptr) ||
+       (notification_type >= MAX_SUPPORTED_POSAL_TIMER_NOTIFY_OBJ_TYPES))
+   {
+      AR_MSG(DBG_ERROR_PRIO, "Bad inputarguments for timer creation");
+      return AR_EBADPARAM;
+   }
+
+   if (POSAL_TIMER_USER != clockSource)
+   {
+      AR_MSG(DBG_ERROR_PRIO, "Only USER TIMER supported for now");
+      return AR_EBADPARAM;
+   }
+
+   //Allocate posal_timer_info
+   posal_timer_info_t *p_timer = NULL;
+   if (NULL == (p_timer = (posal_timer_info_t *)posal_memory_malloc(sizeof(posal_timer_info_t), heap_id)))
+   {
+      AR_MSG(DBG_ERROR_PRIO, "Memory allocation failure");
+      return AR_ENOMEMORY;
+   }
+   memset(p_timer, 0, sizeof(posal_timer_info_t));
+
+   //Allocate timer id
+   timer_t *timerId = NULL;
+   if (NULL == (timerId = (posal_timer_info_t *)posal_memory_malloc(sizeof(timer_t), heap_id)))
+   {
+      AR_MSG(DBG_ERROR_PRIO, "Memory allocation failure");
+      posal_memory_free(p_timer);
+      posal_memory_free(timerId);
+      return AR_ENOMEMORY;
+   }
+   memset(timerId, 0, sizeof(timer_t));
+
+   // init timer structure
+   p_timer->istimerCreated = FALSE;
+   p_timer->uTimerType     = (uint32_t)timerType;
+   p_timer->duration       = ATS_TIMER_MAX_DURATION;
+   p_timer->heap_id        = (POSAL_HEAP_ID)heap_id;
+   p_timer->timer_obj      = timerId; //save pointer to timer
+
+   //Set signal for timer
+   posal_signal_t p_signal = NULL;
+   if (POSAL_TIMER_NOTIFY_OBJ_TYPE_SIGNAL == notification_type)
+   {
+      p_signal = client_info_ptr;
+      if (NULL == (p_timer->pChannel = posal_signal_get_channel(p_signal)))
+      {
+         AR_MSG(DBG_ERROR_PRIO, "Signal does not belong to any channel");
+         posal_memory_free(p_timer);
+         posal_memory_free(timerId);
+         return AR_EFAILED;
+      }
+      p_timer->timer_sigmask = posal_signal_get_channel_bit(p_signal);
+   }
+   //Create linux timer
+   timer_event.sigev_notify = SIGEV_THREAD;
+   timer_event.sigev_notify_function = &posal_timer_expire_cb;
+   timer_event.sigev_value.sival_ptr = p_timer; //Save the timer info for callback function
+
+   nStatus = timer_create(CLOCK_REALTIME, &timer_event, timerId);
+   if (nStatus != 0)
+   {
+      AR_MSG(DBG_ERROR_PRIO, "Failed to create timer");
+      posal_memory_free(p_timer);
+      posal_memory_free(timerId);
+      return AR_EFAILED;
+   }
+
+   p_timer->istimerCreated = TRUE;
+   *pp_timer = (posal_timer_t *)p_timer;
 
    return AR_EOK;
 }
@@ -241,6 +314,25 @@ int32_t posal_timer_oneshot_start_duration(posal_timer_t p_obj, int64_t duration
  */
 int32_t posal_timer_periodic_start(posal_timer_t p_obj, int64_t duration)
 {
+   int nStatus = 0;
+   posal_timer_info_t *p_timer = (posal_timer_info_t *)p_obj;
+   timer_t *timer = (timer_t*) p_timer->timer_obj;
+   struct itimerspec its = {0};
+
+   //Set the timer delay and interval
+   its.it_interval.tv_sec = 0;
+   its.it_interval.tv_nsec = duration * 1000; //Convert duration to nanoseconds
+   its.it_value.tv_sec = 0;
+   its.it_value.tv_nsec = duration * 1000; //Indicates when the timer will fire next
+
+   //Start the timer
+   nStatus = timer_settime(*timer, 0, &its, NULL);
+   if (nStatus != 0)
+   {
+      AR_MSG(DBG_ERROR_PRIO, "Failed to start timer");
+      return AR_EFAILED;
+   }
+
    return AR_EOK;
 }
 

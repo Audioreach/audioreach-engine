@@ -87,6 +87,7 @@ modules/cmn/api
 modules/processing/volume_control/capi/gain/api
 modules/processing/volume_control/capi/soft_vol/api
 modules/cmn/common/internal_api
+modules/processing/PoplessEqualizer/api
 )
 ###
 ###   Some strings used for picking inc paths based on arch, tgt/sim & static/shared.

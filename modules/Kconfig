@@ -56,4 +56,8 @@ config SOFT_VOL
 config FIR_FILTER
         tristate "Enable FIR_FILTER Library"
         default n
+
+config POPLESS_EQUALIZER
+        tristate "Enable POPLESS_EQUALIZER Library"
+        default n
 endmenu
