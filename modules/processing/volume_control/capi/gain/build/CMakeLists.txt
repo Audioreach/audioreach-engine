@@ -20,6 +20,7 @@ set(gain_includes
     ${LIB_ROOT}/inc
     ${LIB_ROOT}/src
     ../../../lib/inc
+    ../../../../../cmn/common/utils/inc
 )
 spf_module_sources(
    KCONFIG     CONFIG_GAIN

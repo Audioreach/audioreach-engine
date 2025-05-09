@@ -24,6 +24,7 @@ set(fir_includes
     ${LIB_ROOT}/capi/src
     ${LIB_ROOT}/lib/inc
     ${LIB_ROOT}/lib/src
+    ../../../../cmn/common/utils/inc
 )
 
 spf_module_sources(
