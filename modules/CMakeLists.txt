@@ -16,6 +16,10 @@ include_directories(
 #Add the sub directories
 add_subdirectory(cmn/build cmn)
 
+#Build limiter as it is a dependency for other modules
+#Can remove if not building IIR_MBDRC or SAL modules
+add_subdirectory(processing/gain_control/limiter/build)
+
 if(CONFIG_ENCODER)
 	add_subdirectory(examples/encoder)
 endif()
@@ -38,7 +42,6 @@ if(CONFIG_DRC)
     add_subdirectory(processing/gain_control/drc/build)
 endif()
 if(CONFIG_IIR_MBDRC)
-    add_subdirectory(processing/gain_control/limiter/build)
     add_subdirectory(processing/gain_control/iir_mbdrc/build)
 endif()
 if(CONFIG_GAIN)
@@ -52,4 +55,7 @@ if(CONFIG_FIR_FILTER)
 endif()
 if(CONFIG_POPLESS_EQUALIZER)
     add_subdirectory(processing/PoplessEqualizer/build)
+endif()
+if(CONFIG_SAL)
+    add_subdirectory(cmn/simple_accumulator_limiter/build)
 endif()
