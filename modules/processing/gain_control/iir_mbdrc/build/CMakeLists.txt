@@ -6,21 +6,17 @@
    @copyright
    Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
    SPDX-License-Identifier: BSD-3-Clause-Clear
-
-   // clang-format off
-   $Header: $
-   // clang-format on
 ]]
 cmake_minimum_required(VERSION 3.10)
 
 #Include directories
 set(iir_mbdrc_includes
-                    ${LIB_ROOT}/api
-                    ${LIB_ROOT}/inc
-                    ../../../../cmn/common/utils/inc
-                    ../../drc/lib/inc
-                    ../../limiter/inc
-                   )
+    ${LIB_ROOT}/api
+    ${LIB_ROOT}/inc
+    ${PROJECT_SOURCE_DIR}/modules/cmn/common/utils/inc
+    ${PROJECT_SOURCE_DIR}/modules/processing/gain_control/drc/lib/inc
+    ${PROJECT_SOURCE_DIR}/modules/processing/gain_control/limiter/inc
+)
 
 spf_module_sources(
    KCONFIG     CONFIG_IIR_MBDRC

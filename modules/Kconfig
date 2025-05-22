@@ -60,4 +60,8 @@ config FIR_FILTER
 config POPLESS_EQUALIZER
         tristate "Enable POPLESS_EQUALIZER Library"
         default n
+
+config SAL
+        tristate "Enable SAL library"
+        default n
 endmenu

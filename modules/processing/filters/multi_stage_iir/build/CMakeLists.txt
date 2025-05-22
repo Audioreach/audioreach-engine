@@ -23,8 +23,8 @@ set(msiir_includes
     ${LIB_ROOT}/capi/src
     ${LIB_ROOT}/lib/inc
     ${LIB_ROOT}/lib/src
-    ../../../../cmn/common/utils/inc/
-    ../../../../../fwk/spf/interfaces/module/shared_lib_api/inc/generic
+    ${PROJECT_SOURCE_DIR}/modules/cmn/common/utils/inc/
+    ${PROJECT_SOURCE_DIR}/fwk/spf/interfaces/module/shared_lib_api/inc/generic
 )
 
 spf_module_sources(
