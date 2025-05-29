@@ -9,9 +9,22 @@
 ]]
 cmake_minimum_required(VERSION 3.10)
 
-add_library(limiter STATIC IMPORTED GLOBAL)
+set(lib_incs_list
+   ${LIB_ROOT}/api
+   ${LIB_ROOT}/lib/inc
+   ${PROJECT_SRC_DIR}/modules/cmn/common/utils/inc
+)
 
-set(lib_abs_path ${CMAKE_CURRENT_SOURCE_DIR}/../bin/arm/liblimiter.a)
+set(lib_srcs_list
+   ${LIB_ROOT}/lib/src/limiter.c
+   ${LIB_ROOT}/lib/src/limiter24.c
+)
 
-set_target_properties(limiter PROPERTIES IMPORTED_LOCATION ${lib_abs_path})
-set_property(GLOBAL APPEND PROPERTY GLOBAL_SPF_LIBS_LIST limiter)
+#Call spf_build_static_library to generate the static library
+spf_build_static_library(limiter
+                         "${lib_incs_list}"
+                         "${lib_srcs_list}"
+                         "${lib_defs_list}"
+                         "${lib_flgs_list}"
+                         "${lib_link_libs_list}"
+                        )

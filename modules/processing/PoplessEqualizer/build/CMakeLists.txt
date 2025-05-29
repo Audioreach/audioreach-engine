@@ -25,9 +25,9 @@ set(popless_equalizer_includes
     ${LIB_ROOT}/capi/src
     ${LIB_ROOT}/lib/inc
     ${LIB_ROOT}/lib/src
-    ../../../cmn/api
-    ../../../cmn/common/internal_api
-    ../../filters/multi_stage_iir/lib/inc
+    ${PROJECT_SOURCE_DIR}/modules/cmn/api
+    ${PROJECT_SOURCE_DIR}/modules/cmn/common/internal_api
+    ${PROJECT_SOURCE_DIR}/modules/processing/filters/multi_stage_iir/lib/inc
 )
 
 spf_module_sources(
@@ -38,7 +38,7 @@ spf_module_sources(
    AMDB_ITYPE  "capi"
    AMDB_MTYPE  "PP"
    AMDB_MID    "0x07001045"
-   AMDB_TAG "capi_p_eq"
+   AMDB_TAG    "capi_p_eq"
    AMDB_MOD_NAME  "MODULE_ID_POPLESS_EQUALIZER"
    AMDB_FMT_ID1   "MEDIA_FMT_ID_PCM"
    SRCS     ${popless_equalizer_sources}

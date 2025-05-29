@@ -14,17 +14,17 @@ set(soft_vol_sources
     ${LIB_ROOT}/src/capi_soft_vol_island.cpp
     ${LIB_ROOT}/src/capi_soft_vol_utils.cpp
     ${LIB_ROOT}/src/capi_soft_vol_utils_v2.cpp
-	../../../lib/src/softvolumecontrols.cpp
-	../../../lib/src/softvolumecontrols_island.cpp
+	 ${PROJECT_SOURCE_DIR}/modules/processing/volume_control/lib/src/softvolumecontrols.cpp
+	 ${PROJECT_SOURCE_DIR}/modules/processing/volume_control/lib/src/softvolumecontrols_island.cpp
 )
 
 set(soft_vol_includes
     ${LIB_ROOT}/api
     ${LIB_ROOT}/inc
     ${LIB_ROOT}/src
-    ../../../lib/inc
-	../../../../../cmn/common/internal_api
-    ../../../../../cmn/common/utils/inc
+    ${PROJECT_SOURCE_DIR}/modules/processing/volume_control/lib/inc
+	 ${PROJECT_SOURCE_DIR}/modules/cmn/common/internal_api
+    ${PROJECT_SOURCE_DIR}/modules/cmn/common/utils/inc
 )
 
 spf_module_sources(
