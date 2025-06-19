@@ -852,3 +852,30 @@ int32_t s32_mult_s32_s32_left_shift_1(int32_t var1, int32_t var2)
 
 }
 #endif
+
+#if !defined(s32_shr_s32_imm5_rnd)
+int32_t s32_shr_s32_imm5_rnd(int32_t var, int32_t u5)
+{
+   int32_t output, rnd, tmp;
+
+   tmp = var >> u5;
+   rnd = tmp & 1;
+   output = tmp >> 1 + rnd;
+
+   return (output);
+}
+#endif
+
+#if !defined(s64_shr_s64_imm6_rnd)
+int64_t s64_shr_s64_imm6_rnd(int64_t var, int64_t u6)
+{
+   int64_t output, rnd, tmp;
+
+   tmp = var >> u6;
+   rnd = tmp & 1;
+   output = tmp >> 1 + rnd;
+
+   return (output);
+
+}
+#endif

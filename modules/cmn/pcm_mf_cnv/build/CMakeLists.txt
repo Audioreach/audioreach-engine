@@ -5,7 +5,7 @@
 
    @copyright
    Copyright (c) Qualcomm Innovation Center, Inc. All Rights Reserved.
-   SPDX-License-Identifier: BSD-3-Clause-Clear-Clear
+   SPDX-License-Identifier: BSD-3-Clause-Clear
 ]]
 cmake_minimum_required(VERSION 3.10)
 
@@ -20,7 +20,7 @@ set(pcm_cnv_sources
    ${LIB_ROOT}/lib/src/pc_process.cpp
    ${LIB_ROOT}/lib/src/pc_process_island.cpp
    ${LIB_ROOT}/lib/src/pc_float/pc_float.cpp
-   )
+)
 
 include_directories(
      ${LIB_ROOT}/capi/pcm_cnv/api
@@ -29,19 +29,19 @@ include_directories(
      ${LIB_ROOT}/capi/mfc/api
      ${LIB_ROOT}/capi/mfc/inc
      ${LIB_ROOT}/lib/inc
-     ../../../audio/pcm_encoder/api
-     ../../../audio/pcm_encoder/inc
-     ../../../audio/pcm_decoder/api
-     ../../../audio/pcm_decoder/inc
-     ../../../processing/channel_mixer/lib/inc
-     ../../../processing/channel_mixer/api/
-     ../../../processing/resamplers/dynamic_resampler/inc
-     ../../../processing/resamplers/iir_resampler/inc
-     ../../../../fwk/spf/utils/cmn/inc
-     ../../../../fwk/spf/utils/interleaver/inc
-     ../../../../fwk/spf/utils/lpi_pool/inc
-     ../../../../fwk/spf/interfaces/fwk/api
-     ../../../../fwk/spf/containers/cmn/graph_utils/inc
+     ${PROJECT_SOURCE_DIR}/modules/audio/pcm_encoder/api
+     ${PROJECT_SOURCE_DIR}/modules/audio/pcm_encoder/inc
+     ${PROJECT_SOURCE_DIR}/modules/audio/pcm_decoder/api
+     ${PROJECT_SOURCE_DIR}/modules/audio/pcm_decoder/inc
+     ${PROJECT_SOURCE_DIR}/modules/processing/channel_mixer/lib/inc
+     ${PROJECT_SOURCE_DIR}/modules/processing/channel_mixer/api/
+     ${PROJECT_SOURCE_DIR}/modules/processing/resamplers/dynamic_resampler/inc
+     ${PROJECT_SOURCE_DIR}/modules/processing/resamplers/iir_resampler/inc
+     ${PROJECT_SOURCE_DIR}/fwk/spf/utils/cmn/inc
+     ${PROJECT_SOURCE_DIR}/fwk/spf/utils/interleaver/inc
+     ${PROJECT_SOURCE_DIR}/fwk/spf/utils/lpi_pool/inc
+     ${PROJECT_SOURCE_DIR}/fwk/spf/interfaces/fwk/api
+     ${PROJECT_SOURCE_DIR}/fwk/spf/containers/cmn/graph_utils/inc
 )
 
 add_library(pcm_cnv ${pcm_cnv_sources})
@@ -66,19 +66,19 @@ set(pcm_cnv_includes
      ${LIB_ROOT}/capi/mfc/api
      ${LIB_ROOT}/capi/mfc/inc
      ${LIB_ROOT}/lib/inc
-     ../../../audio/pcm_encoder/api
-     ../../../audio/pcm_encoder/inc
-     ../../../audio/pcm_decoder/api
-     ../../../audio/pcm_decoder/inc
-     ../../../processing/channel_mixer/lib/inc
-     ../../../processing/channel_mixer/api/
-     ../../../processing/resamplers/dynamic_resampler/inc
-     ../../../processing/resamplers/iir_resampler/inc
-     ../../../../fwk/spf/utils/cmn/inc
-     ../../../../fwk/spf/utils/interleaver/inc
-     ../../../../fwk/spf/utils/lpi_pool/inc
-     ../../../../fwk/spf/interfaces/fwk/api
-     ../../../../fwk/spf/containers/cmn/graph_utils/inc
+     ${PROJECT_SOURCE_DIR}/modules/audio/pcm_encoder/api
+     ${PROJECT_SOURCE_DIR}/modules/audio/pcm_encoder/inc
+     ${PROJECT_SOURCE_DIR}/modules/audio/pcm_decoder/api
+     ${PROJECT_SOURCE_DIR}/modules/audio/pcm_decoder/inc
+     ${PROJECT_SOURCE_DIR}/modules/processing/channel_mixer/lib/inc
+     ${PROJECT_SOURCE_DIR}/modules/processing/channel_mixer/api/
+     ${PROJECT_SOURCE_DIR}/modules/processing/resamplers/dynamic_resampler/inc
+     ${PROJECT_SOURCE_DIR}/modules/processing/resamplers/iir_resampler/inc
+     ${PROJECT_SOURCE_DIR}/fwk/spf/utils/cmn/inc
+     ${PROJECT_SOURCE_DIR}/fwk/spf/utils/interleaver/inc
+     ${PROJECT_SOURCE_DIR}/fwk/spf/utils/lpi_pool/inc
+     ${PROJECT_SOURCE_DIR}/fwk/spf/interfaces/fwk/api
+     ${PROJECT_SOURCE_DIR}/fwk/spf/containers/cmn/graph_utils/inc
      )
 
 spf_module_sources(
@@ -110,7 +110,7 @@ spf_module_sources(
      AMDB_FMT_ID1   "MEDIA_FMT_ID_PCM"
      SRCS      ${pcm_cnv_sources}
      INCLUDES  ${pcm_cnv_includes}
-     H2XML_HEADERS  "../../../audio/pcm_decoder/api/pcm_decoder_api.h"
+     H2XML_HEADERS  "${PROJECT_SOURCE_DIR}/modules/audio/pcm_decoder/api/pcm_decoder_api.h"
      CFLAGS         ""
 )
 
@@ -127,7 +127,7 @@ spf_module_sources(
      AMDB_FMT_ID1   "MEDIA_FMT_ID_PCM"
      SRCS      ${pcm_cnv_sources}
      INCLUDES  ${pcm_cnv_includes}
-     H2XML_HEADERS  "../../../audio/pcm_encoder/api/pcm_encoder_api.h"
+     H2XML_HEADERS  "${PROJECT_SOURCE_DIR}/modules/audio/pcm_encoder/api/pcm_encoder_api.h"
      CFLAGS         ""
 )
 
