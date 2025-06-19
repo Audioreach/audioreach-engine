@@ -32,11 +32,16 @@ set (lib_srcs_list
      ${LIB_ROOT}/src/divide_qx_island.c
      ${LIB_ROOT}/src/mathlib.c
      ${LIB_ROOT}/src/audio_complex_basic_op.c
-     #${LIB_ROOT}/src/filterDesign.c
+     ${LIB_ROOT}/src/filterDesign.c
      ${LIB_ROOT}/src/util.c
      ${LIB_ROOT}/src/audio_delay32.c
      ${LIB_ROOT}/src/clips.c
      ${LIB_ROOT}/src/apiir_df1_opt.c
+     ${LIB_ROOT}/src/audio_filter.cpp
+     ${LIB_ROOT}/src/audio_delay.cpp
+     ${LIB_ROOT}/src/converter_state.c
+     ${LIB_ROOT}/src/buffer_converter.c
+     ${LIB_ROOT}/src/convert_linear.c
     )
 
 #Call spf_build_static_library to generate the static library

@@ -64,4 +64,17 @@ config POPLESS_EQUALIZER
 config SAL
         tristate "Enable SAL library"
         default n
+
+config SHOEBOX
+        tristate "Enable SHOEBOX library"
+        default n
+
+config REVERB
+        tristate "Enable REVERB library"
+        default n
+
+config VIRTUALIZER
+        tristate "Enable VIRTUALIZER library"
+        select MSIIR
+        default n
 endmenu

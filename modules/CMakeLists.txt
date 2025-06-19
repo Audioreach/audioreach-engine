@@ -55,8 +55,15 @@ endif()
 if(CONFIG_SAL)
     add_subdirectory(cmn/simple_accumulator_limiter/build)
 endif()
+if(CONFIG_SHOEBOX OR CONFIG_REVERB)
+    add_subdirectory(processing/shoebox_reverb/build)
+endif()
+if(CONFIG_VIRTUALIZER)
+    add_subdirectory(processing/Virtualizer/build)
+endif()
 
-#Build limiter if SAL or MBDRC are built
-if(CONFIG_SAL OR CONFIG_IIR_MBDRC)
+
+#Build limiter if building other modules that depend on it
+if(CONFIG_SAL OR CONFIG_IIR_MBDRC OR CONFIG_VIRTUALIZER)
     add_subdirectory(processing/gain_control/limiter/build)
 endif()
