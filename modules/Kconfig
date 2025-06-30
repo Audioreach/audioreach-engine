@@ -60,4 +60,27 @@ config FIR_FILTER
 config POPLESS_EQUALIZER
         tristate "Enable POPLESS_EQUALIZER Library"
         default n
+
+config SAL
+        tristate "Enable SAL library"
+        default n
+
+config SHOEBOX
+        tristate "Enable SHOEBOX library"
+        default n
+
+config REVERB
+        tristate "Enable REVERB library"
+        default n
+
+config VIRTUALIZER
+        tristate "Enable VIRTUALIZER library"
+        select MSIIR
+        default n
+
+config BASS_BOOST
+        tristate "Enable BASS_BOOST Library"
+        select DRC
+        select MSIIR
+        default n
 endmenu

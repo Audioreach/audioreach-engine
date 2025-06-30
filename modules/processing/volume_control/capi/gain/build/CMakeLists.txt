@@ -12,15 +12,15 @@ cmake_minimum_required(VERSION 3.10)
 set(gain_sources
     ${LIB_ROOT}/src/capi_gain.c
     ${LIB_ROOT}/src/capi_gain_utils.c
-	../../../lib/src/apply_gain.c
+	 ${PROJECT_SOURCE_DIR}/modules/processing/volume_control/lib/src/apply_gain.c
 )
 
 set(gain_includes
     ${LIB_ROOT}/api
     ${LIB_ROOT}/inc
     ${LIB_ROOT}/src
-    ../../../lib/inc
-    ../../../../../cmn/common/utils/inc
+    ${PROJECT_SOURCE_DIR}/modules/processing/volume_control/lib/inc
+    ${PROJECT_SOURCE_DIR}/modules/cmn/common/utils/inc
 )
 spf_module_sources(
    KCONFIG     CONFIG_GAIN

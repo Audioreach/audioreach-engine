@@ -197,6 +197,10 @@ int32_t s32_accu_asr_s32_imm5(int32_t accu32, int32_t var, uint32_t u5);
 
 int32_t s32_accu_asl_s32_imm5(int32_t accu32, int32_t var, uint32_t u5);
 
+int32_t s32_shr_s32_imm5_rnd(int32_t var, int32_t u5);
+
+int64_t s64_shr_s64_imm6_rnd(int64_t var, int64_t u6);
+
 #if !defined(s32_set_bit_s32_s32)
 int32_t s32_set_bit_s32_s32(int32_t var1, int32_t ind);
 #endif

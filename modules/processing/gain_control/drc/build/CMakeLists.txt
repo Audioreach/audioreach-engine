@@ -22,9 +22,9 @@ set(drc_includes
     ${LIB_ROOT}/capi/src
     ${LIB_ROOT}/lib/inc
     ${LIB_ROOT}/lib/src
-    ../../../../cmn/common/utils/inc
-    ../../../../cmn/api
-    ../../../../cmn/common/internal_api
+    ${PROJECT_SOURCE_DIR}/modules/cmn/common/utils/inc
+    ${PROJECT_SOURCE_DIR}/modules/cmn/api
+    ${PROJECT_SOURCE_DIR}/modules/cmn/common/internal_api
 )
 
 spf_module_sources(

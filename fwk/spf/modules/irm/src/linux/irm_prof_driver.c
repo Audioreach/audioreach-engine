@@ -27,6 +27,8 @@ SPDX-License-Identifier: BSD-3-Clause-Clear
 #include <pthread.h>
 
 #define IRM_DEBUG 1
+FILE   *file = NULL; //File pointer to read CPU speed
+double previous_clock_time = 0.0; //Global variable to store former clock speed
 
 
 irm_system_capabilities_t g_irm_cmn_capabilities = { .processor_type               = IRM_PROCESSOR_TYPE_ARM,
@@ -157,6 +159,12 @@ static ar_result_t irm_fill_processor_metric(irm_t                *irm_ptr,
                                              uint32_t              frame_size_ms)
 {
    ar_result_t result = AR_EOK;
+   char output[10];
+   int cpuSpeed = 0;
+   struct timespec ts;
+   double total_time_active = 0.0;
+   double time_diff = 0.0;
+
    if (NULL == metric_obj_ptr)
    {
       result = AR_EFAILED;
@@ -181,39 +189,31 @@ static ar_result_t irm_fill_processor_metric(irm_t                *irm_ptr,
    {
       case IRM_METRIC_ID_PROCESSOR_CYCLES:
       {
-         irm_metric_id_processor_cycles_t *payload_ptr =
+        irm_metric_id_processor_cycles_t *payload_ptr =
             (irm_metric_id_processor_cycles_t *)(report_metric_payload_ptr + 1);
-         irm_prev_metric_processor_cycles_t *prev_ptr =
+        irm_prev_metric_processor_cycles_t *prev_ptr =
             (irm_prev_metric_processor_cycles_t *)metric_obj_ptr->metric_info.prev_statistic_ptr;
-		uint32_t total_time_active = 0;
-		
-		{
-			//https://pubs.opengroup.org/onlinepubs/009604499/basedefs/sys/time.h.html
-			struct rusage usage = {0};
-			int rc = getrusage(RUSAGE_SELF, &usage);
-			if (rc)
-			{
-				AR_MSG(DBG_HIGH_PRIO, "getrusage returned error %d\n", rc);
+
+		//Read the CPU speed from the file opened in profile_init
+		if (file != NULL) {
+			fseek(file, 0, SEEK_SET);
+			while(fgets(output, sizeof(output), file) != NULL) {
+				sscanf(output, "%d", &cpuSpeed);
 			}
-			else
-			{
-				total_time_active = (uint32_t) ((usage.ru_utime.tv_sec*1000000.0+usage.ru_utime.tv_usec)/1000000.0 + 
-				(usage.ru_stime.tv_sec*1000000.0+usage.ru_stime.tv_usec)/1000000.0);
-				
-				AR_MSG(DBG_HIGH_PRIO," User time %f sec\n System time %f sec. total_time_active %lu\n", \
-						(usage.ru_utime.tv_sec*1000000.0+usage.ru_utime.tv_usec)/1000000.0, \
-						(usage.ru_stime.tv_sec*1000000.0+usage.ru_stime.tv_usec)/1000000.0,
-						total_time_active
-						);
-			}
+		} else {
+			AR_MSG(DBG_ERROR_PRIO, "File not opened, cannot read cpuSpeed.");
+			return AR_EFAILED;
 		}
-		//for now, report amount of time we are active
-        payload_ptr->processor_cycles = (uint32_t)(total_time_active - prev_ptr->processor_cycles);
+
+		total_time_active = clock();
+		time_diff = (double)(total_time_active - previous_clock_time)/(double)CLOCKS_PER_SEC;
+
+		payload_ptr->processor_cycles = (uint64_t)(time_diff * cpuSpeed * 1000.0);
 
 #if IRM_DEBUG
          AR_MSG(DBG_HIGH_PRIO, "IRM: pcyles = %lu", payload_ptr->processor_cycles);
 #endif
-         prev_ptr->processor_cycles = total_time_active;
+         previous_clock_time = total_time_active;
          break;
       }
       case IRM_BASIC_METRIC_ID_CURRENT_CLOCK:
@@ -278,6 +278,9 @@ static ar_result_t irm_handle_processor_metrics(irm_t *irm_ptr, irm_node_obj_t *
 
 ar_result_t irm_profiler_init(irm_t *irm_ptr)
 {
+   file = fopen("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq", "r");
+   if (file == NULL)
+      AR_MSG(DBG_ERROR_PRIO, "IRM: fopen failed");
    return AR_EOK;
 }
 
@@ -292,6 +295,9 @@ void irm_profiler_deinit(irm_t *irm_ptr)
       AR_MSG(DBG_HIGH_PRIO, "IRM: profiler memory deallocated");
    }
    irm_ptr->core.profiler_handle_ptr = NULL;
+   previous_clock_time = 0.0;
+   if (file != NULL)
+      fclose(file);
 }
 /*----------------------------------------------------------------------------------------------------------------------
 
