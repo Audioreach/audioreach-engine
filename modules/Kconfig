@@ -77,4 +77,10 @@ config VIRTUALIZER
         tristate "Enable VIRTUALIZER library"
         select MSIIR
         default n
+
+config BASS_BOOST
+        tristate "Enable BASS_BOOST Library"
+        select DRC
+        select MSIIR
+        default n
 endmenu

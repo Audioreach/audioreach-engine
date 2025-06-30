@@ -61,9 +61,11 @@ endif()
 if(CONFIG_VIRTUALIZER)
     add_subdirectory(processing/Virtualizer/build)
 endif()
-
+if(CONFIG_BASS_BOOST)
+    add_subdirectory(processing/bassboost/build)
+endif()
 
 #Build limiter if building other modules that depend on it
-if(CONFIG_SAL OR CONFIG_IIR_MBDRC OR CONFIG_VIRTUALIZER)
+if(CONFIG_SAL OR CONFIG_IIR_MBDRC OR CONFIG_VIRTUALIZER OR CONFIG_BASS_BOOST)
     add_subdirectory(processing/gain_control/limiter/build)
 endif()
