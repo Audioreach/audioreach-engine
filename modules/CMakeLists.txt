@@ -64,6 +64,12 @@ endif()
 if(CONFIG_BASS_BOOST)
     add_subdirectory(processing/bassboost/build)
 endif()
+if(CONFIG_DYNAMIC_RESAMPLER)
+    add_subdirectory(processing/resamplers/dynamic_resampler/build)
+endif()
+if(CONFIG_IIR_RESAMPLER)
+    add_subdirectory(processing/resamplers/iir_resampler/build)
+endif()
 
 #Build limiter if building other modules that depend on it
 if(CONFIG_SAL OR CONFIG_IIR_MBDRC OR CONFIG_VIRTUALIZER OR CONFIG_BASS_BOOST)

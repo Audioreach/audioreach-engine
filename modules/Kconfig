@@ -34,6 +34,8 @@ config PCM_CNV
         tristate "Enable PCM_CNV Library"
         select CH_MIXER
         select MSIIR
+        select DYNAMIC_RESAMPLER
+        select IIR_RESAMPLER
         default y
 
 config DRC
@@ -82,5 +84,13 @@ config BASS_BOOST
         tristate "Enable BASS_BOOST Library"
         select DRC
         select MSIIR
+        default n
+
+config DYNAMIC_RESAMPLER
+        tristate "Enable DYNAMIC_RESAMPLER Library"
+        default n
+
+config IIR_RESAMPLER
+        tristate "Enable IIR_RESAMPLER Library"
         default n
 endmenu
