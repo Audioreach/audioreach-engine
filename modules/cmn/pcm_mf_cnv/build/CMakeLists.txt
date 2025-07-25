@@ -22,43 +22,6 @@ set(pcm_cnv_sources
    ${LIB_ROOT}/lib/src/pc_float/pc_float.cpp
 )
 
-include_directories(
-     ${LIB_ROOT}/capi/pcm_cnv/api
-     ${LIB_ROOT}/capi/pcm_cnv/inc
-     ${LIB_ROOT}/capi/pcm_cnv/src
-     ${LIB_ROOT}/capi/mfc/api
-     ${LIB_ROOT}/capi/mfc/inc
-     ${LIB_ROOT}/lib/inc
-     ${PROJECT_SOURCE_DIR}/modules/audio/pcm_encoder/api
-     ${PROJECT_SOURCE_DIR}/modules/audio/pcm_encoder/inc
-     ${PROJECT_SOURCE_DIR}/modules/audio/pcm_decoder/api
-     ${PROJECT_SOURCE_DIR}/modules/audio/pcm_decoder/inc
-     ${PROJECT_SOURCE_DIR}/modules/processing/channel_mixer/lib/inc
-     ${PROJECT_SOURCE_DIR}/modules/processing/channel_mixer/api/
-     ${PROJECT_SOURCE_DIR}/modules/processing/resamplers/dynamic_resampler/inc
-     ${PROJECT_SOURCE_DIR}/modules/processing/resamplers/iir_resampler/inc
-     ${PROJECT_SOURCE_DIR}/fwk/spf/utils/cmn/inc
-     ${PROJECT_SOURCE_DIR}/fwk/spf/utils/interleaver/inc
-     ${PROJECT_SOURCE_DIR}/fwk/spf/utils/lpi_pool/inc
-     ${PROJECT_SOURCE_DIR}/fwk/spf/interfaces/fwk/api
-     ${PROJECT_SOURCE_DIR}/fwk/spf/containers/cmn/graph_utils/inc
-)
-
-add_library(pcm_cnv ${pcm_cnv_sources})
-
-#Link dynamic_resampler and iir_resampler binaries to pcm_cnv library
-add_library(dynamic_resampler STATIC IMPORTED GLOBAL)
-set(lib_abs_path ${CMAKE_CURRENT_SOURCE_DIR}/../../../processing/resamplers/dynamic_resampler/bin/arm/libdynamic_resampler.a)
-set_target_properties(dynamic_resampler PROPERTIES IMPORTED_LOCATION ${lib_abs_path})
-target_link_libraries(pcm_cnv INTERFACE dynamic_resampler)
-
-add_library(iir_resampler STATIC IMPORTED GLOBAL)
-set(lib_abs_path ${CMAKE_CURRENT_SOURCE_DIR}/../../../processing/resamplers/iir_resampler/bin/arm/libiir_resampler.a)
-set_target_properties(iir_resampler PROPERTIES IMPORTED_LOCATION ${lib_abs_path})
-target_link_libraries(pcm_cnv INTERFACE iir_resampler)
-
-set_property(GLOBAL APPEND PROPERTY GLOBAL_SPF_LIBS_LIST pcm_cnv)
-
 set(pcm_cnv_includes
      ${LIB_ROOT}/capi/pcm_cnv/api
      ${LIB_ROOT}/capi/pcm_cnv/inc

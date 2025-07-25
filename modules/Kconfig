@@ -36,13 +36,8 @@ config PCM_CNV
         select MSIIR
         default y
 
-config DRC
-        tristate "Enable DRC Library"
-        default y
-
 config IIR_MBDRC
         tristate "Enable IIR_MBDRC Library"
-        select DRC
         default y
 
 config GAIN
@@ -80,7 +75,6 @@ config VIRTUALIZER
 
 config BASS_BOOST
         tristate "Enable BASS_BOOST Library"
-        select DRC
         select MSIIR
         default n
 endmenu
