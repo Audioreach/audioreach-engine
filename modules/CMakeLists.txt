@@ -36,9 +36,6 @@ if(CONFIG_PCM_CNV)
     add_subdirectory(processing/resamplers/dynamic_resampler/build)
     add_subdirectory(processing/resamplers/iir_resampler/build)
 endif()
-if(CONFIG_DRC)
-    add_subdirectory(processing/gain_control/drc/build)
-endif()
 if(CONFIG_IIR_MBDRC)
     add_subdirectory(processing/gain_control/iir_mbdrc/build)
 endif()
@@ -67,7 +64,11 @@ if(CONFIG_BASS_BOOST)
     add_subdirectory(processing/bassboost/build)
 endif()
 
-#Build limiter if building other modules that depend on it
+# The below modules are not standalone, so they should only be built if
+# another module that is dependent on it is built.
 if(CONFIG_SAL OR CONFIG_IIR_MBDRC OR CONFIG_VIRTUALIZER OR CONFIG_BASS_BOOST)
     add_subdirectory(processing/gain_control/limiter/build)
+endif()
+if(CONFIG_IIR_MBDRC OR CONFIG_BASS_BOOST)
+    add_subdirectory(processing/gain_control/drc/build)
 endif()
