@@ -121,7 +121,7 @@ function(spf_module_sources)
 				COMMAND
 				mkdir -p ${PROJECT_BINARY_DIR}/h2xml_autogen
 				COMMAND
-				${H2XML} -conf ${H2XML_CONFIG} ${H2XML_FLAGS} -o ${PROJECT_BINARY_DIR}/h2xml_autogen ${H2XML_INCLUDES} -t spfModule ${abs_path}
+				${H2XML} -conf ${H2XML_CONFIG} ${H2XML_FLAGS} -o ${PROJECT_BINARY_DIR}/h2xml_autogen ${H2XML_INCLUDES} -t spfModule -a "@h2xml_processors{${PROC_DOMAIN_NAME}}" ${abs_path}
 			)
 		endforeach()
 
@@ -172,7 +172,7 @@ function(spf_module_sources)
 				COMMAND
 				mkdir -p ${PROJECT_BINARY_DIR}/h2xml_autogen
 				COMMAND
-				${H2XML} -conf ${H2XML_CONFIG} ${H2XML_FLAGS} -o ${PROJECT_BINARY_DIR}/h2xml_autogen ${H2XML_INCLUDES} -t spfModule ${abs_path}
+				${H2XML} -conf ${H2XML_CONFIG} ${H2XML_FLAGS} -o ${PROJECT_BINARY_DIR}/h2xml_autogen ${H2XML_INCLUDES} -t spfModule -a "@h2xml_processors{${PROC_DOMAIN_NAME}}" ${abs_path}
 			)
 		endforeach()
 
@@ -236,7 +236,7 @@ function(spf_module_sources)
 				COMMAND
 				mkdir -p ${PROJECT_BINARY_DIR}/h2xml_autogen
 				COMMAND
-				${H2XML} -conf ${H2XML_CONFIG} ${H2XML_FLAGS} -o ${PROJECT_BINARY_DIR}/h2xml_autogen ${H2XML_INCLUDES} -t spfModule ${abs_path}
+				${H2XML} -conf ${H2XML_CONFIG} ${H2XML_FLAGS} -o ${PROJECT_BINARY_DIR}/h2xml_autogen ${H2XML_INCLUDES} -t spfModule -a "@h2xml_processors{${PROC_DOMAIN_NAME}}" ${abs_path}
 			)
 		endforeach()
 		set_target_properties(${SPF_MODULE_NAME} PROPERTIES PREFIX "" SOVERSION ${SPF_MODULE_MAJOR_VER})
