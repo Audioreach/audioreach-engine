@@ -38,6 +38,18 @@ function(spf_parse_kconfig)
 	endforeach()
 endfunction()
 
+function(check_supported_proc_domain CONFIG_PROC_DOMAIN)
+    set(SUPPORTED_PROC_DOMAINS "ADSP" "MDSP" "APPS" "SDSP" "CDSP" "CC_DSP" "GDSP_0" "GDSP_1" "APPS_2")
+    list(FIND SUPPORTED_PROC_DOMAINS "${CONFIG_PROC_DOMAIN}" DOMAIN_INDEX)
+    if(DOMAIN_INDEX EQUAL -1)
+        message(FATAL_ERROR
+            "Unsupported CONFIG_PROC_DOMAIN value: '${CONFIG_PROC_DOMAIN}'.\n"
+            "Supported values are: ${SUPPORTED_PROC_DOMAINS}")
+    else()
+        message(STATUS "CONFIG_PROC_DOMAIN value: '${CONFIG_PROC_DOMAIN}' is supported.")
+    endif()
+endfunction()
+
 function(get_absolute_path given_path abs_path)
 		if(IS_ABSOLUTE ${given_path})
 			set(${abs_path} ${given_path} PARENT_SCOPE)
